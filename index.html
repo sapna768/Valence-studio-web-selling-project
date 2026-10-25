@@ -1,518 +1,548 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valence Studio | Elite Websites, Branding & AI Solutions</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VALENCE STUDIO | Websites, Branding & AI Solutions</title>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts: Plus Jakarta Sans & Cinzel / Syne for luxury header vibes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        obsidian: '#07090e',
-                        cardBg: 'rgba(15, 23, 42, 0.75)',
-                        goldAccent: '#d4af37',
-                        goldLight: '#f3e5ab',
-                        goldDark: '#aa7c11',
-                        blueAccent: '#00d2ff',
-                        blueDeep: '#0052d4'
+                        brand: {
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                            blue: '#1E64FE',
+                            blueCyan: '#00D2FF',
+                            darkBg: '#090B10',
+                            canvas: '#F7F7F6',
+                            cardBg: '#FFFFFF'
+                        }
                     },
                     fontFamily: {
-                        sans: ['Cinzel', 'Plus Jakarta Sans', 'sans-serif'],
-                        body: ['Inter', 'sans-serif']
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Cinzel', 'serif'],
+                        mono: ['Space Grotesk', 'sans-serif']
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="bg-obsidian text-gray-100 font-body relative overflow-x-hidden selection:bg-goldAccent selection:text-black">
 
-    <!-- Ambient Glowing Particle Canvas -->
-    <canvas id="ambientCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+    <style>
+        /* Blueprint background grid effect */
+        body {
+            background-color: #F7F7F6;
+            background-image:
+                linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Gradient Metallic Text */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #F5D77F 0%, #C59B27 50%, #E8C15A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-valence-gradient {
+            background: linear-gradient(135deg, #E2C066 0%, #4B8CFB 60%, #00D2FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Subtle Card Hover Effects */
+        .valence-card {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .valence-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(30, 100, 254, 0.12);
+        }
+
+        /* Glow pulse animation for logo star */
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .star-glow {
+            animation: pulseGlow 2.5s infinite ease-in-out;
+        }
+
+        /* Estimator Option Active State */
+        .estimator-btn.active {
+            border-color: #1E64FE !important;
+            background-color: #F0F5FF !important;
+            box-shadow: 0 0 0 2px rgba(30, 100, 254, 0.2);
+        }
+    </style>
+</head>
+
+<body class="text-slate-900 font-sans selection:bg-brand-blue selection:text-white relative min-h-screen">
 
     <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-obsidian/80 border-b border-gray-800/80 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Brand Logo with SVG Butterfly Symbol -->
+    <header class="sticky top-0 z-50 bg-[#F7F7F6]/85 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
+
+            <!-- Logo Branding (SVG matching requested artwork) -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="relative w-10 h-10 flex items-center justify-center">
-                    <svg viewBox="0 0 100 100" class="w-full h-full transition-transform duration-500 group-hover:scale-110">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 flex-shrink-0">
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
                         <defs>
-                            <linearGradient id="goldGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#f3e5ab" />
-                                <stop offset="50%" stop-color="#d4af37" />
-                                <stop offset="100%" stop-color="#aa7c11" />
+                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#F5D77F" />
+                                <stop offset="50%" stop-color="#C59B27" />
+                                <stop offset="100%" stop-color="#8A640F" />
                             </linearGradient>
-                            <linearGradient id="blueGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#00d2ff" />
-                                <stop offset="100%" stop-color="#0052d4" />
+                            <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00D2FF" />
+                                <stop offset="70%" stop-color="#1E64FE" />
+                                <stop offset="100%" stop-color="#0A2540" />
                             </linearGradient>
                         </defs>
-                        <!-- Right Wing Gold V -->
-                        <path d="M 50 85 L 15 20 Q 35 30 50 50 Z" fill="url(#goldGradNav)" opacity="0.95"/>
-                        <!-- Left Wing Blue V -->
-                        <path d="M 50 85 L 85 20 Q 65 30 50 50 Z" fill="url(#blueGradNav)" opacity="0.95"/>
-                        <!-- Butterfly Body Antennae -->
-                        <path d="M 50 50 Q 42 30 38 20 M 50 50 Q 58 30 62 20" stroke="#f3e5ab" stroke-width="2" fill="none" stroke-linecap="round"/>
-                        <!-- Orbit Ring -->
-                        <ellipse cx="50" cy="52" rx="40" ry="14" fill="none" stroke="url(#goldGradNav)" stroke-width="1.5" transform="rotate(-18 50 52)"/>
+                        <!-- Left Wing / Gold V-Stem -->
+                        <path d="M 40 45 C 55 45, 80 80, 100 150 C 90 110, 75 70, 40 45 Z" fill="url(#goldGrad)" />
+                        <path d="M 35 48 C 65 50, 95 100, 100 150 C 75 120, 50 85, 35 48 Z" fill="url(#goldGrad)"
+                            opacity="0.9" />
+
+                        <!-- Right Wing / Blue Metallic V-Stem -->
+                        <path d="M 160 45 C 145 45, 120 80, 100 150 C 110 110, 125 70, 160 45 Z"
+                            fill="url(#blueGrad)" />
+                        <path d="M 165 48 C 135 50, 105 100, 100 150 C 125 120, 150 85, 165 48 Z" fill="url(#blueGrad)"
+                            opacity="0.9" />
+
+                        <!-- Center Butterfly Body -->
+                        <ellipse cx="100" cy="95" rx="2.5" ry="25" fill="#FFFFFF" />
+                        <path d="M 100 70 Q 92 50, 85 45" stroke="#00D2FF" stroke-width="1.5" fill="none" />
+                        <path d="M 100 70 Q 108 50, 115 45" stroke="#00D2FF" stroke-width="1.5" fill="none" />
+                        <circle cx="85" cy="45" r="2" fill="#00D2FF" />
+                        <circle cx="115" cy="45" r="2" fill="#00D2FF" />
+
+                        <!-- Orbital Ring -->
+                        <ellipse cx="100" cy="100" rx="75" ry="22" fill="none" stroke="url(#goldGrad)" stroke-width="2"
+                            transform="rotate(-15 100 100)" opacity="0.85" />
+
+                        <!-- Star Sparkle -->
+                        <path class="star-glow"
+                            d="M 160 85 L 163 92 L 170 95 L 163 98 L 160 105 L 157 98 L 150 95 L 157 92 Z"
+                            fill="#FFFFFF" />
                     </svg>
                 </div>
-                <div>
-                    <span class="font-sans font-bold text-xl tracking-widest text-gradient bg-clip-text text-transparent bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent">VALENCE</span>
-                    <span class="block text-[10px] tracking-[0.3em] text-gray-400 font-sans uppercase -mt-1">STUDIO</span>
+
+                <div class="flex flex-col leading-none">
+                    <span class="font-display font-extrabold text-lg tracking-wider text-slate-900">
+                        VALENCE <span class="text-brand-blue">STUDIO</span>
+                    </span>
+                    <span class="text-[9px] font-mono tracking-widest text-slate-500 uppercase mt-0.5">
+                        Websites / Branding / AI
+                    </span>
                 </div>
             </a>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-                <a href="#services" class="hover:text-goldAccent transition-colors duration-200">Services</a>
-                <a href="#calculator" class="hover:text-goldAccent transition-colors duration-200">ROI Estimator</a>
-                <a href="#portfolio" class="hover:text-goldAccent transition-colors duration-200">Work</a>
-                <a href="#process" class="hover:text-goldAccent transition-colors duration-200">Process</a>
-                <a href="#contact" class="hover:text-goldAccent transition-colors duration-200">Contact</a>
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+                <a href="#services" class="hover:text-brand-blue transition">Services</a>
+                <a href="#estimator" class="hover:text-brand-blue transition">ROI Estimator</a>
+                <a href="#work" class="hover:text-brand-blue transition">Work</a>
+                <a href="#process" class="hover:text-brand-blue transition">Process</a>
+                <a href="#contact" class="hover:text-brand-blue transition">Contact</a>
             </nav>
 
             <!-- CTA Button -->
-            <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 transform hover:-translate-y-0.5">
-                <span>Start Project</span>
-                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            <a href="#contact"
+                class="bg-gradient-to-r from-brand-blue to-blue-600 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition duration-200 flex items-center gap-2">
+                <span>Book a Call</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
-
-            <!-- Mobile Menu Toggle -->
-            <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
-                <i class="fa-solid fa-bars text-xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenu" class="hidden md:hidden bg-obsidian/95 border-b border-gray-800 px-6 py-4 flex flex-col gap-4">
-            <a href="#services" class="mobile-nav-link text-gray-300 hover:text-goldAccent">Services</a>
-            <a href="#calculator" class="mobile-nav-link text-gray-300 hover:text-goldAccent">ROI Estimator</a>
-            <a href="#portfolio" class="mobile-nav-link text-gray-300 hover:text-goldAccent">Work</a>
-            <a href="#process" class="mobile-nav-link text-gray-300 hover:text-goldAccent">Process</a>
-            <a href="#contact" class="mobile-nav-link text-gray-300 hover:text-goldAccent">Contact</a>
-            <a href="#contact" class="inline-block text-center py-2.5 rounded-full text-xs font-semibold uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent">Start Project</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative z-10 pt-16 pb-24 md:pt-28 md:pb-36 px-6 max-w-7xl mx-auto text-center">
-        <!-- Brand Tagline Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-goldAccent/10 to-blueAccent/10 border border-goldAccent/30 text-goldLight text-xs tracking-widest font-semibold uppercase mb-8 backdrop-blur-md">
-            <span class="w-2 h-2 rounded-full bg-blueAccent animate-pulse"></span>
-            <span>Websites &bull; Branding &bull; Marketing &bull; AI Solutions</span>
+    <section class="py-16 md:py-24 px-4 sm:px-6 max-w-6xl mx-auto text-center">
+        <!-- Status Pill -->
+        <div
+            class="inline-flex items-center gap-2 bg-white border border-slate-200 shadow-sm rounded-full px-4 py-1.5 mb-8">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Available For New Projects</span>
         </div>
 
         <!-- Main Headline -->
-        <h1 class="font-sans text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-white max-w-5xl mx-auto mb-8">
-            Valence Studio Builds <br class="hidden md:block"/>
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent">
-                High-Converting Digital Empires
-            </span>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
+            Processional Designs<br />
+            <span class="text-valence-gradient">For Digital Products</span>
         </h1>
 
-        <!-- Subheading -->
-        <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">
-            We merge luxury brand strategy, hyper-fast responsive web design, data-driven marketing, and cutting-edge AI integrations to scale your revenue.
+        <p class="text-slate-600 text-base sm:text-xl max-w-2xl mx-auto font-normal leading-relaxed mb-10">
+            We design & build high-converting web applications, luxury brand identities, and custom AI workflows that
+            turn modern visitors into loyal clients.
         </p>
 
         <!-- CTAs -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <a href="#calculator" class="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3">
-                <span>Calculate Project ROI</span>
-                <i class="fa-solid fa-calculator"></i>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#contact"
+                class="w-full sm:w-auto bg-gradient-to-r from-brand-blue to-blue-600 text-white font-semibold text-base px-8 py-3.5 rounded-full shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-3">
+                <span>Book a Strategy Call</span>
+                <i class="fa-solid fa-phone-volume text-sm"></i>
             </a>
-            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-semibold tracking-wider uppercase text-white bg-slate-900/80 hover:bg-slate-800 border border-goldAccent/30 hover:border-goldAccent transition-all duration-300 flex items-center justify-center gap-3">
-                <span>View Portfolio</span>
-                <i class="fa-solid fa-arrow-right"></i>
+
+            <a href="#work"
+                class="w-full sm:w-auto bg-white border border-slate-200 text-slate-800 font-semibold text-base px-8 py-3.5 rounded-full shadow-sm hover:bg-slate-50 hover:border-slate-300 transition duration-200 flex items-center justify-center gap-2">
+                <span>View Previews</span>
+                <i class="fa-solid fa-eye text-sm text-slate-400"></i>
             </a>
         </div>
+    </section>
 
-        <!-- Trust Badges -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20 pt-10 border-t border-gray-800/80">
-            <div>
-                <h3 class="font-sans text-3xl font-bold text-goldAccent">3.8x</h3>
-                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Avg. Client Revenue Growth</p>
+    <!-- Brand Services Pillars Section -->
+    <section id="services" class="py-12 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
+                <i class="fa-solid fa-globe text-2xl text-brand-blue mb-3"></i>
+                <h3 class="font-bold text-slate-900 text-sm">Websites</h3>
+                <p class="text-xs text-slate-500 mt-1">Full-stack platforms</p>
             </div>
-            <div>
-                <h3 class="font-sans text-3xl font-bold text-blueAccent">99.8%</h3>
-                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">PageSpeed Performance</p>
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
+                <i class="fa-solid fa-wand-magic-sparkles text-2xl text-amber-500 mb-3"></i>
+                <h3 class="font-bold text-slate-900 text-sm">Branding</h3>
+                <p class="text-xs text-slate-500 mt-1">Identity & Systems</p>
             </div>
-            <div>
-                <h3 class="font-sans text-3xl font-bold text-goldLight">100+</h3>
-                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">High-Ticket Launches</p>
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
+                <i class="fa-solid fa-chart-line text-2xl text-emerald-500 mb-3"></i>
+                <h3 class="font-bold text-slate-900 text-sm">Marketing</h3>
+                <p class="text-xs text-slate-500 mt-1">Conversion Funnels</p>
             </div>
-            <div>
-                <h3 class="font-sans text-3xl font-bold text-blueAccent">24/7</h3>
-                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">AI Automation Ready</p>
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
+                <i class="fa-solid fa-brain text-2xl text-purple-600 mb-3"></i>
+                <h3 class="font-bold text-slate-900 text-sm">AI Solutions</h3>
+                <p class="text-xs text-slate-500 mt-1">Smart Automation</p>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="relative z-10 py-24 bg-gradient-to-b from-obsidian via-slate-950 to-obsidian border-t border-gray-900 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs uppercase font-bold tracking-[0.3em] text-blueAccent mb-3">Core Expertise</h2>
-                <p class="font-sans text-3xl md:text-5xl font-extrabold text-white">Services Crafted for Dominance</p>
+    <!-- Featured Work Grid -->
+    <section id="work" class="py-16 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <span class="text-xs font-mono font-bold tracking-widest text-brand-blue uppercase">Selected
+                    Portfolio</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Architected For Scalable Growth</h2>
+            </div>
+            <p class="text-slate-500 text-sm max-w-md mt-3 md:mt-0">
+                Engineered with precision, premium aesthetics, and lightning-fast load performance.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Work Card 1 -->
+            <div class="valence-card bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+                <div
+                    class="bg-slate-950 text-white rounded-2xl p-6 h-56 flex flex-col justify-between mb-5 relative overflow-hidden group">
+                    <div class="flex justify-between items-start">
+                        <span
+                            class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-800 px-2.5 py-1 rounded-full">SaaS
+                            Architecture</span>
+                        <span class="text-slate-500 text-xs font-mono">01</span>
+                    </div>
+                    <div>
+                        <h3
+                            class="text-2xl font-bold tracking-tight text-white group-hover:text-brand-blueCyan transition">
+                            Design, Build & Deploy</h3>
+                        <p class="text-xs text-slate-400 mt-1">Cloud Next.js & Python Ecosystem</p>
+                    </div>
+                </div>
+                <h4 class="font-bold text-slate-900 text-lg mb-1">Web Platform Engineering</h4>
+                <p class="text-slate-500 text-sm">Full-stack web applications with responsive UI/UX and custom workflow
+                    integrations.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Service 1: Websites -->
-                <div class="glass-card p-8 rounded-2xl border border-gray-800 hover:border-goldAccent/50 transition-all duration-300 group flex flex-col justify-between">
-                    <div>
-                        <div class="w-14 h-14 rounded-xl bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </div>
-                        <h3 class="font-sans text-xl font-bold text-white mb-3 group-hover:text-goldAccent transition-colors">Websites & E-Commerce</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed font-light mb-6">High-speed, conversion-focused websites, bespoke web applications, and scalable online stores tailored for sales.</p>
+            <!-- Work Card 2 -->
+            <div class="valence-card bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+                <div
+                    class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-2xl p-6 h-56 flex flex-col justify-between mb-5 relative overflow-hidden group">
+                    <div class="flex justify-between items-start">
+                        <span
+                            class="text-xs font-mono font-bold text-brand-blueCyan bg-blue-950/80 border border-blue-800 px-2.5 py-1 rounded-full">Scale
+                            & Performance</span>
+                        <span class="text-slate-500 text-xs font-mono">02</span>
                     </div>
-                    <ul class="text-xs text-gray-400 space-y-2 border-t border-gray-800/80 pt-4">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Responsive & Mobile First</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Custom Interactive Calculators</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Ultra-Fast Loading Speeds</li>
-                    </ul>
-                </div>
-
-                <!-- Service 2: Branding -->
-                <div class="glass-card p-8 rounded-2xl border border-gray-800 hover:border-goldAccent/50 transition-all duration-300 group flex flex-col justify-between">
                     <div>
-                        <div class="w-14 h-14 rounded-xl bg-blueAccent/10 border border-blueAccent/30 flex items-center justify-center text-blueAccent text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-crown"></i>
-                        </div>
-                        <h3 class="font-sans text-xl font-bold text-white mb-3 group-hover:text-blueAccent transition-colors">Brand Identity & Strategy</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed font-light mb-6">Command premium industry positioning with custom logo design, visual identity systems, taglines, and brand guidelines.</p>
+                        <h3
+                            class="text-2xl font-bold tracking-tight text-white group-hover:text-brand-goldLight transition">
+                            Built For Fast, Aligned Growth</h3>
+                        <p class="text-xs text-slate-300 mt-1">High-traffic E-Commerce</p>
                     </div>
-                    <ul class="text-xs text-gray-400 space-y-2 border-t border-gray-800/80 pt-4">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Logo & Symbol Design</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Visual Style Architecture</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Brand Voice & Pitch Decks</li>
-                    </ul>
                 </div>
-
-                <!-- Service 3: Marketing -->
-                <div class="glass-card p-8 rounded-2xl border border-gray-800 hover:border-goldAccent/50 transition-all duration-300 group flex flex-col justify-between">
-                    <div>
-                        <div class="w-14 h-14 rounded-xl bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-                        <h3 class="font-sans text-xl font-bold text-white mb-3 group-hover:text-goldAccent transition-colors">Performance Marketing</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed font-light mb-6">Targeted Google & Meta ad campaigns, SEO ranking, funnel optimization, and high-ROI digital user acquisition strategies.</p>
-                    </div>
-                    <ul class="text-xs text-gray-400 space-y-2 border-t border-gray-800/80 pt-4">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> High-ROAS Paid Ads</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Search Engine Optimization</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Lead Generation Funnels</li>
-                    </ul>
-                </div>
-
-                <!-- Service 4: AI Solutions -->
-                <div class="glass-card p-8 rounded-2xl border border-gray-800 hover:border-goldAccent/50 transition-all duration-300 group flex flex-col justify-between">
-                    <div>
-                        <div class="w-14 h-14 rounded-xl bg-blueAccent/10 border border-blueAccent/30 flex items-center justify-center text-blueAccent text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                            <i class="fa-solid fa-robot"></i>
-                        </div>
-                        <h3 class="font-sans text-xl font-bold text-white mb-3 group-hover:text-blueAccent transition-colors">AI & Smart Solutions</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed font-light mb-6">Automate your business workflows with custom AI chatbots, intelligent lead capture agents, and API integrations.</p>
-                    </div>
-                    <ul class="text-xs text-gray-400 space-y-2 border-t border-gray-800/80 pt-4">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Custom AI Assistants</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Workflow Automations</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Smart CRM Integrations</li>
-                    </ul>
-                </div>
+                <h4 class="font-bold text-slate-900 text-lg mb-1">E-Commerce Ecosystems</h4>
+                <p class="text-slate-500 text-sm">Lightning-fast storefronts built for conversion optimization and high
+                    traffic.</p>
             </div>
+
+            <!-- Work Card 3 -->
+            <div class="valence-card bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+                <div
+                    class="bg-slate-900 text-white rounded-2xl p-6 h-56 flex flex-col justify-between mb-5 relative overflow-hidden group">
+                    <div class="flex justify-between items-start">
+                        <span
+                            class="text-xs font-mono font-bold text-amber-400 bg-amber-950/80 border border-amber-800 px-2.5 py-1 rounded-full">Personal
+                            Brand</span>
+                        <span class="text-slate-500 text-xs font-mono">03</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold tracking-tight text-white group-hover:text-amber-300 transition">
+                            Launch a Site That Wins Opportunities</h3>
+                        <p class="text-xs text-slate-400 mt-1">Luxury Founder Platforms</p>
+                    </div>
+                </div>
+                <h4 class="font-bold text-slate-900 text-lg mb-1">Executive Portfolios</h4>
+                <p class="text-slate-500 text-sm">Custom landing platforms crafted specifically for founders,
+                    consultants, and agencies.</p>
+            </div>
+
         </div>
     </section>
 
-    <!-- Interactive Price & ROI Calculator Section -->
-    <section id="calculator" class="relative z-10 py-24 px-6 max-w-7xl mx-auto">
-        <div class="glass-card p-8 md:p-12 rounded-3xl border border-goldAccent/30 shadow-[0_0_50px_rgba(212,175,55,0.1)]">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <!-- Left Details -->
-                <div class="lg:col-span-6 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-goldAccent/10 border border-goldAccent/30 text-goldAccent text-xs uppercase font-semibold">
-                        <i class="fa-solid fa-calculator"></i> Live Estimate
-                    </div>
-                    <h2 class="font-sans text-3xl md:text-5xl font-extrabold text-white">Interactive Investment & ROI Estimator</h2>
-                    <p class="text-gray-400 text-sm md:text-base leading-relaxed">Customize your digital project stack below to receive an instant transparent pricing estimate and projected business growth impact.</p>
+    <!-- Interactive Cost & Scope Estimator -->
+    <section id="estimator" class="py-16 px-4 sm:px-6 max-w-4xl mx-auto">
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg">
+            <div class="text-center max-w-lg mx-auto mb-8">
+                <span class="text-xs font-mono font-bold tracking-widest text-brand-blue uppercase">Instant Quote</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Project Cost Estimator</h2>
+                <p class="text-slate-500 text-sm mt-2">Select your scope requirements to estimate your investment
+                    roadmap.</p>
+            </div>
 
-                    <!-- Interactive Options -->
-                    <div class="space-y-4 pt-4">
-                        <div>
-                            <label class="block text-xs uppercase font-semibold text-gray-300 mb-2">1. Select Primary Scope</label>
-                            <div class="grid grid-cols-2 gap-3" id="scopeSelector">
-                                <button type="button" data-val="1200" class="scope-btn active p-3 rounded-xl border text-left text-xs font-semibold">
-                                    <span class="block text-white text-sm">Landing Page</span>
-                                    <span class="text-gray-400">$1,200 baseline</span>
-                                </button>
-                                <button type="button" data-val="2800" class="scope-btn p-3 rounded-xl border text-left text-xs font-semibold">
-                                    <span class="block text-white text-sm">Full Agency Site</span>
-                                    <span class="text-gray-400">$2,800 baseline</span>
-                                </button>
-                                <button type="button" data-val="4500" class="scope-btn p-3 rounded-xl border text-left text-xs font-semibold">
-                                    <span class="block text-white text-sm">E-Commerce Store</span>
-                                    <span class="text-gray-400">$4,500 baseline</span>
-                                </button>
-                                <button type="button" data-val="6500" class="scope-btn p-3 rounded-xl border text-left text-xs font-semibold">
-                                    <span class="block text-white text-sm">Enterprise & AI</span>
-                                    <span class="text-gray-400">$6,500 baseline</span>
-                                </button>
-                            </div>
-                        </div>
+            <!-- Options -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                <button type="button"
+                    class="estimator-btn active bg-white border border-slate-200 rounded-2xl p-5 text-left transition"
+                    data-price="2500" onclick="selectTier(this, 2500)">
+                    <div class="text-xs font-mono text-brand-blue font-bold uppercase mb-1">Standard</div>
+                    <div class="font-bold text-slate-900 text-base">Landing Page</div>
+                    <div class="text-xs text-slate-500 mt-2">$2,500 base scope</div>
+                </button>
 
-                        <div>
-                            <label class="block text-xs uppercase font-semibold text-gray-300 mb-2">2. Add-On Growth Accelerators</label>
-                            <div class="space-y-2">
-                                <label class="flex items-center justify-between p-3 rounded-xl border border-gray-800 bg-obsidian/50 cursor-pointer hover:border-gray-700">
-                                    <span class="text-xs text-gray-300 flex items-center gap-2"><input type="checkbox" class="addon-check accent-goldAccent" value="800"> Complete Brand Identity Package</span>
-                                    <span class="text-xs text-goldAccent font-semibold">+$800</span>
-                                </label>
-                                <label class="flex items-center justify-between p-3 rounded-xl border border-gray-800 bg-obsidian/50 cursor-pointer hover:border-gray-700">
-                                    <span class="text-xs text-gray-300 flex items-center gap-2"><input type="checkbox" class="addon-check accent-goldAccent" value="1200"> Custom AI Chatbot & Lead Agent</span>
-                                    <span class="text-xs text-blueAccent font-semibold">+$1,200</span>
-                                </label>
-                                <label class="flex items-center justify-between p-3 rounded-xl border border-gray-800 bg-obsidian/50 cursor-pointer hover:border-gray-700">
-                                    <span class="text-xs text-gray-300 flex items-center gap-2"><input type="checkbox" class="addon-check accent-goldAccent" value="950"> Advanced Performance SEO Package</span>
-                                    <span class="text-xs text-goldAccent font-semibold">+$950</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button type="button"
+                    class="estimator-btn bg-white border border-slate-200 rounded-2xl p-5 text-left transition"
+                    data-price="4500" onclick="selectTier(this, 4500)">
+                    <div class="text-xs font-mono text-brand-blue font-bold uppercase mb-1">Growth</div>
+                    <div class="font-bold text-slate-900 text-base">Web Application</div>
+                    <div class="text-xs text-slate-500 mt-2">$4,500 base scope</div>
+                </button>
 
-                <!-- Right Live Estimate Summary Box -->
-                <div class="lg:col-span-6">
-                    <div class="bg-slate-950 p-8 rounded-2xl border border-gray-800 text-center relative overflow-hidden">
-                        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-blueAccent/10 rounded-full blur-2xl pointer-events-none"></div>
-                        <div class="absolute -left-10 -top-10 w-40 h-40 bg-goldAccent/10 rounded-full blur-2xl pointer-events-none"></div>
+                <button type="button"
+                    class="estimator-btn bg-white border border-slate-200 rounded-2xl p-5 text-left transition"
+                    data-price="7500" onclick="selectTier(this, 7500)">
+                    <div class="text-xs font-mono text-brand-blue font-bold uppercase mb-1">Enterprise</div>
+                    <div class="font-bold text-slate-900 text-base">Full Digital Suite</div>
+                    <div class="text-xs text-slate-500 mt-2">$7,500 base scope</div>
+                </button>
+            </div>
 
-                        <p class="text-xs uppercase font-semibold tracking-widest text-gray-400 mb-2">Estimated Investment</p>
-                        <div class="font-sans text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent mb-4" id="totalEstimate">
-                            $2,800
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4 my-6 p-4 rounded-xl bg-obsidian/80 border border-gray-800/80 text-left">
-                            <div>
-                                <span class="block text-[10px] text-gray-500 uppercase tracking-wider">Estimated Timeline</span>
-                                <span class="text-sm font-semibold text-white" id="estTimeline">2 - 3 Weeks</span>
-                            </div>
-                            <div>
-                                <span class="block text-[10px] text-gray-500 uppercase tracking-wider">Projected Lead Boost</span>
-                                <span class="text-sm font-semibold text-blueAccent" id="estLeadBoost">+250% Growth</span>
-                            </div>
-                        </div>
-
-                        <a href="#contact" class="w-full block py-4 rounded-xl text-xs font-bold tracking-wider uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-300">
-                            Lock In This Estimate
-                        </a>
-                    </div>
+            <!-- Add-ons -->
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 mb-8">
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-3">Optional
+                    Add-ons:</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" id="addonBranding"
+                            class="w-4 h-4 text-brand-blue rounded border-slate-300" onchange="calculateTotal()">
+                        <span class="text-slate-700">Brand Identity Package (+$1,200)</span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" id="addonAI" class="w-4 h-4 text-brand-blue rounded border-slate-300"
+                            onchange="calculateTotal()">
+                        <span class="text-slate-700">Custom AI Integration (+$1,500)</span>
+                    </label>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="relative z-10 py-24 bg-obsidian border-t border-gray-900 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <!-- Calculation Display -->
+            <div
+                class="bg-slate-900 text-white rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div>
-                    <h2 class="text-xs uppercase font-bold tracking-[0.3em] text-goldAccent mb-3">Selected Showcase</h2>
-                    <p class="font-sans text-3xl md:text-5xl font-extrabold text-white">Recent Work & Results</p>
+                    <span class="text-xs text-slate-400 block font-mono">ESTIMATED INVESTMENT</span>
+                    <span id="totalEstimateDisplay" class="text-4xl font-extrabold text-brand-goldLight">$2,500</span>
                 </div>
-            </div>
-
-            <!-- Portfolio Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Item 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 group hover:border-goldAccent/50 transition-all duration-300">
-                    <div class="h-56 bg-slate-900 relative overflow-hidden flex items-center justify-center p-6">
-                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10"></div>
-                        <div class="text-center z-20">
-                            <span class="text-xs text-goldAccent font-mono tracking-widest">[ PROJECT SHOWCASE ]</span>
-                            <h4 class="font-sans text-xl font-bold text-white mt-1">Aethel E-Commerce Store</h4>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[10px] uppercase tracking-wider font-semibold text-blueAccent">E-Commerce & Branding</span>
-                        <h3 class="font-sans text-lg font-bold text-white mt-1 mb-2">Luxury Watch Retail Platform</h3>
-                        <p class="text-xs text-gray-400 font-light mb-4">Increased store checkout conversions by 180% with an interactive product builder.</p>
-                        <div class="flex items-center justify-between text-xs pt-4 border-t border-gray-800/80">
-                            <span class="text-gray-400">Result: <strong class="text-white">+210% ROI</strong></span>
-                            <span class="text-goldAccent font-semibold">View Case Study &rarr;</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 group hover:border-goldAccent/50 transition-all duration-300">
-                    <div class="h-56 bg-slate-900 relative overflow-hidden flex items-center justify-center p-6">
-                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10"></div>
-                        <div class="text-center z-20">
-                            <span class="text-xs text-blueAccent font-mono tracking-widest">[ PROJECT SHOWCASE ]</span>
-                            <h4 class="font-sans text-xl font-bold text-white mt-1">PCU Digital Portal</h4>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[10px] uppercase tracking-wider font-semibold text-goldAccent">Web Platform & Design</span>
-                        <h3 class="font-sans text-lg font-bold text-white mt-1 mb-2">University Digital Experience</h3>
-                        <p class="text-xs text-gray-400 font-light mb-4">Modernized academic portal structure with dark sleek aesthetic & course selector.</p>
-                        <div class="flex items-center justify-between text-xs pt-4 border-t border-gray-800/80">
-                            <span class="text-gray-400">Result: <strong class="text-white">4.9/5 Rating</strong></span>
-                            <span class="text-goldAccent font-semibold">View Case Study &rarr;</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 group hover:border-goldAccent/50 transition-all duration-300">
-                    <div class="h-56 bg-slate-900 relative overflow-hidden flex items-center justify-center p-6">
-                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10"></div>
-                        <div class="text-center z-20">
-                            <span class="text-xs text-goldAccent font-mono tracking-widest">[ PROJECT SHOWCASE ]</span>
-                            <h4 class="font-sans text-xl font-bold text-white mt-1">Kinetix AI Agent</h4>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[10px] uppercase tracking-wider font-semibold text-blueAccent">AI & Performance Marketing</span>
-                        <h3 class="font-sans text-lg font-bold text-white mt-1 mb-2">Automated SaaS Lead Funnel</h3>
-                        <p class="text-xs text-gray-400 font-light mb-4">Built an AI conversational sales rep that books qualified client meetings 24/7.</p>
-                        <div class="flex items-center justify-between text-xs pt-4 border-t border-gray-800/80">
-                            <span class="text-gray-400">Result: <strong class="text-white">350+ Leads/Mo</strong></span>
-                            <span class="text-goldAccent font-semibold">View Case Study &rarr;</span>
-                        </div>
-                    </div>
-                </div>
+                <a href="#contact"
+                    class="w-full sm:w-auto bg-gradient-to-r from-brand-blue to-blue-500 text-white font-semibold text-sm px-6 py-3 rounded-full hover:shadow-lg hover:shadow-blue-500/30 transition text-center">
+                    Lock In Estimate
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section id="process" class="relative z-10 py-24 bg-gradient-to-b from-obsidian via-slate-950 to-obsidian border-t border-gray-900 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs uppercase font-bold tracking-[0.3em] text-blueAccent mb-3">Our Blueprint</h2>
-                <p class="font-sans text-3xl md:text-5xl font-extrabold text-white">How We Scale Your Brand</p>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 max-w-4xl mx-auto">
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-12 shadow-xl">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-xs font-mono font-bold tracking-widest text-brand-blue uppercase">Let's Work
+                    Together</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Ready to Build Your Digital Product?
+                </h2>
+                <p class="text-slate-500 text-sm mt-2">Send us your project details or inquiries and our strategy team
+                    will reach out within 24 hours.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="p-6 rounded-2xl border border-gray-800 bg-obsidian/60 relative">
-                    <span class="font-sans text-4xl font-extrabold text-goldAccent/30 mb-4 block">01</span>
-                    <h3 class="font-sans text-lg font-bold text-white mb-2">Discovery & Strategy</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed font-light">We analyze your target market, competitors, and revenue goals to craft a unique positioning strategy.</p>
-                </div>
-                <div class="p-6 rounded-2xl border border-gray-800 bg-obsidian/60 relative">
-                    <span class="font-sans text-4xl font-extrabold text-blueAccent/30 mb-4 block">02</span>
-                    <h3 class="font-sans text-lg font-bold text-white mb-2">Design & Architecture</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed font-light">We construct bespoke UI/UX designs, interactive calculators, and high-conversion wireframes.</p>
-                </div>
-                <div class="p-6 rounded-2xl border border-gray-800 bg-obsidian/60 relative">
-                    <span class="font-sans text-4xl font-extrabold text-goldAccent/30 mb-4 block">03</span>
-                    <h3 class="font-sans text-lg font-bold text-white mb-2">Development & AI</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed font-light">Engineered with ultra-fast code, responsive styling, SEO optimizations, and automated AI lead capture.</p>
-                </div>
-                <div class="p-6 rounded-2xl border border-gray-800 bg-obsidian/60 relative">
-                    <span class="font-sans text-4xl font-extrabold text-blueAccent/30 mb-4 block">04</span>
-                    <h3 class="font-sans text-lg font-bold text-white mb-2">Launch & Scale</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed font-light">We deploy your project, launch targeted marketing campaigns, and continuously optimize for sales growth.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact & Lead Capture Form -->
-    <section id="contact" class="relative z-10 py-24 px-6 max-w-7xl mx-auto">
-        <div class="glass-card p-8 md:p-12 rounded-3xl border border-gray-800">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div class="lg:col-span-5 space-y-6">
-                    <span class="text-xs uppercase font-bold tracking-[0.3em] text-goldAccent">Let's Connect</span>
-                    <h2 class="font-sans text-3xl md:text-5xl font-extrabold text-white">Ready to Build Your Digital Empire?</h2>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">Schedule a direct strategy call or send us a message. We typically respond within 2 hours with a detailed roadmap.</p>
-
-                    <div class="space-y-4 pt-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div>
-                                <span class="block text-xs text-gray-400 uppercase">Direct Email</span>
-                                <a href="mailto:hello@valencestudio.com" class="text-sm font-semibold text-white hover:text-goldAccent">hello@valencestudio.com</a>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-blueAccent/10 border border-blueAccent/30 flex items-center justify-center text-blueAccent">
-                                <i class="fa-solid fa-globe"></i>
-                            </div>
-                            <div>
-                                <span class="block text-xs text-gray-400 uppercase">Services Worldwide</span>
-                                <span class="text-sm font-semibold text-white">Remote & Client On-Site</span>
-                            </div>
-                        </div>
+            <form id="contactForm" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name"
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Your
+                            Name</label>
+                        <input type="text" id="name" required placeholder="Sapna Gupta"
+                            class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition">
+                    </div>
+                    <div>
+                        <label for="email"
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Email
+                            Address</label>
+                        <input type="email" id="email" required placeholder="sapna@valence.studio"
+                            class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition">
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="lg:col-span-7">
-                    <form id="contactForm" class="space-y-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs text-gray-400 uppercase mb-1">Your Name</label>
-                                <input type="text" required placeholder="Sapna Gupta" class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gray-800 text-white text-sm focus:border-goldAccent focus:outline-none transition-colors">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-400 uppercase mb-1">Email Address</label>
-                                <input type="email" required placeholder="sapna@example.com" class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gray-800 text-white text-sm focus:border-goldAccent focus:outline-none transition-colors">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs text-gray-400 uppercase mb-1">Service Required</label>
-                            <select class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gray-800 text-white text-sm focus:border-goldAccent focus:outline-none transition-colors">
-                                <option value="website">Websites & E-Commerce Development</option>
-                                <option value="branding">Brand Identity & Strategy</option>
-                                <option value="marketing">Performance Marketing & Ads</option>
-                                <option value="ai">AI Solutions & Automations</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs text-gray-400 uppercase mb-1">Project Details</label>
-                            <textarea rows="4" required placeholder="Tell us about your business goals, timeline, and requirements..." class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gray-800 text-white text-sm focus:border-goldAccent focus:outline-none transition-colors"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full py-4 rounded-xl text-xs font-bold tracking-wider uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-300">
-                            Send Inquiry & Get Roadmap
-                        </button>
-                    </form>
+                <div>
+                    <label for="service"
+                        class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Service
+                        Required</label>
+                    <select id="service"
+                        class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition">
+                        <option value="Websites & Web Engineering">Websites & Full-Stack Web Engineering</option>
+                        <option value="Branding & Design System">Luxury Branding & Identity System</option>
+                        <option value="AI Solutions & Automations">AI Solutions & Workflow Automation</option>
+                        <option value="Full Digital Package">Full Digital Package (Web + Brand + AI)</option>
+                    </select>
                 </div>
-            </div>
+
+                <div>
+                    <label for="details"
+                        class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Project
+                        Details</label>
+                    <textarea id="details" rows="4"
+                        placeholder="Tell us about your project goals, timelines, or specific features required..."
+                        class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn"
+                    class="w-full bg-gradient-to-r from-brand-blue to-blue-600 text-white font-bold text-base py-4 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-2">
+                    <span>Send Inquiry & Get Roadmap</span>
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+
+                <p id="formStatus" class="text-center text-sm font-semibold mt-4 hidden"></p>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="relative z-10 border-t border-gray-900 bg-obsidian py-12 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer class="py-12 border-t border-slate-200/80 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
+
             <div class="flex items-center gap-3">
-                <span class="font-sans font-bold text-lg text-gradient bg-clip-text text-transparent bg-gradient-to-r from-goldLight to-blueAccent">VALENCE STUDIO</span>
-                <span class="text-xs text-gray-500">&bull; &copy; 2026 All Rights Reserved.</span>
+                <span class="font-display font-bold text-slate-900 tracking-wider text-sm">VALENCE STUDIO</span>
+                <span class="text-slate-300">|</span>
+                <span class="text-xs text-slate-500 font-mono">Websites / Branding / Marketing / AI Solutions</span>
             </div>
-            <p class="text-xs text-gray-500">Crafted with precision for high-growth businesses.</p>
+
+            <p class="text-xs text-slate-400">
+                © 2026 VALENCE STUDIO. All rights reserved.
+            </p>
+
         </div>
     </footer>
 
-    <!-- Custom JavaScript -->
-    <script src="js/main.js"></script>
+    <!-- Interactive JavaScript Logic -->
+    <script>
+        let currentBasePrice = 2500;
+
+        function selectTier(element, price) {
+            document.querySelectorAll('.estimator-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            currentBasePrice = price;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = currentBasePrice;
+            if (document.getElementById('addonBranding').checked) total += 1200;
+            if (document.getElementById('addonAI').checked) total += 1500;
+
+            document.getElementById('totalEstimateDisplay').innerText = '$' + total.toLocaleString();
+        }
+
+        // Backend Form Submission handling
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const formStatus = document.getElementById('formStatus');
+
+            const payload = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                service: document.getElementById('service').value,
+                details: document.getElementById('details').value
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Sending Inquiry...';
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const resData = await response.json();
+
+                formStatus.classList.remove('hidden', 'text-red-500', 'text-emerald-600');
+                if (response.ok && resData.success) {
+                    formStatus.classList.add('text-emerald-600');
+                    formStatus.innerText = "✓ Inquiry Sent Successfully! We will contact you shortly.";
+                    document.getElementById('contactForm').reset();
+                } else {
+                    formStatus.classList.add('text-red-500');
+                    formStatus.innerText = resData.message || "Something went wrong. Please try again.";
+                }
+            } catch (err) {
+                formStatus.classList.remove('hidden');
+                formStatus.classList.add('text-red-500');
+                formStatus.innerText = "Connection Error. Please check your backend server.";
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Send Inquiry & Get Roadmap</span> <i class="fa-solid fa-paper-plane text-xs"></i>';
+            }
+        });
+    </script>
 </body>
+
 </html>

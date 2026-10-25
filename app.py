@@ -1,30 +1,23 @@
-# Python Helper Script for Valence Studio
-# Run this script to start a local development server for Valence Studio website.
+from flask import Flask, render_template, request, jsonify
 
-import http.server
-import socketserver
-import webbrowser
-import os
+app = Flask(__name__, template_folder='.', static_folder='.', static_url_path='')
 
-PORT = 8000
+@app.route('/')
+def home():
+    return render_template('index.html')
 
-class Handler(http.server.SimpleHTTPRequestHandler):
-    pass
-
-if __name__ == "__main__":
-    web_dir = os.path.dirname(os.path.realpath(__file__))
-    os.chdir(web_dir)
+@app.route('/api/contact', methods=['POST'])
+def contact():
+    data = request.json or {}
+    name = data.get('name', '').strip()
+    email = data.get('email', '').strip()
+    service = data.get('service', '').strip()
+    details = data.get('details', '').strip()
     
-    print(f"==================================================")
-    print(f"  VALENCE STUDIO - Local Server Running")
-    print(f"  URL: http://localhost:{PORT}")
-    print(f"==================================================")
-    
-    # Automatically open in web browser
-    webbrowser.open(f"http://localhost:{PORT}")
-    
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        try:
-            httpd.serve_forever()
-        except KeyboardInterrupt:
-            print("\nServer stopped successfully.")
+    if not name or not email:
+        return jsonify({"success": False, "message": "Name and Email are required!"}), 400
+
+    return jsonify({"success": True, "message": "Thank you! Your inquiry has been received."})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000, debug=True)
