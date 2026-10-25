@@ -1,0 +1,191 @@
+/* Custom CSS Variables - Updated for Creamy Color Scheme */
+:root {
+    --primary: #c99f5d;
+    /* New Creamy/Gold Primary Color */
+    --primary-hover: #b88a4f;
+    --secondary: #ec4899;
+    /* Pink can stay, it works as an accent */
+    --bg-light: #fffbea;
+    /* Creamy Background Color */
+    --card-bg: #fff;
+    /* Card background remains white for clean look, or use slightly less creamy shade */
+    --text-dark: #332f26;
+    /* Dark Brown for text instead of black/gray */
+    --text-muted: #736b5e;
+    /* Muted brown for secondary text */
+    --border-color: #f1e9d1;
+    /* Brighter border color */
+    --radius: 12px;
+    --shadow: 0 10px 25px -5px rgba(201, 159, 93, 0.1), 0 8px 10px -6px rgba(201, 159, 93, 0.05);
+    /* Tinted shadow */
+}
+
+/* Base and Text overrides for creamy theme */
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.logo span {
+    color: var(--text-dark);
+    /* Brand name part also dark brown */
+}
+
+/* Section-specific updates for the creamy look */
+
+/* 1. Header & Navigation */
+header {
+    background: rgba(255, 251, 234, 0.9);
+    /* Slightly more opaque, less blurred creamy bg for modern look */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-link {
+    color: var(--text-dark);
+    /* Use dark brown for links */
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+    /* Hover is creamy gold */
+}
+
+.nav-right .btn-outline {
+    border-color: var(--primary);
+    color: var(--text-dark);
+}
+
+.nav-right .btn-outline:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* 2. Hero Section */
+.hero {
+    /* Potential minor background texture if desired, otherwise pure cream */
+}
+
+.hero-badge {
+    background-color: var(--border-color);
+    color: var(--primary);
+}
+
+.hero-content h1 {
+    color: var(--text-dark);
+    /* Ensure heading text is the dark brown */
+}
+
+.floating-badge {
+    background: white;
+    /* Maintain white background for pop out */
+    box-shadow: 0 10px 30px rgba(201, 159, 93, 0.15);
+    /* More tinted shadow */
+}
+
+.floating-badge div>div:first-child {
+    color: var(--text-dark);
+    /* Name inside badge is dark brown */
+}
+
+/* 3. Packages Section */
+.billing-toggle {
+    background: white;
+    border-color: var(--border-color);
+}
+
+.package-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.package-card.popular {
+    border-color: var(--primary);
+    /* More intense creamy gold border */
+}
+
+/* 4. Calculator Section */
+.calc-container {
+    background: #fdfaf0;
+    /* Slightly different creamy tone for the block */
+    border-color: var(--border-color);
+}
+
+.type-card {
+    border-color: var(--border-color);
+}
+
+.type-card.selected {
+    border-color: var(--primary);
+    background: #fffbea;
+    /* Creamy background when selected */
+}
+
+.addon-item {
+    background: white;
+    border-color: var(--border-color);
+}
+
+.total-price-display {
+    color: var(--text-dark);
+    /* Use dark brown for the price display for readability against cream */
+}
+
+/* 5. Portfolio Section */
+.portfolio-card {
+    background: white;
+    border-color: var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+/* 6. About Section */
+#about {
+    background: var(--card-bg);
+    /* Use pure white card bg or same cream tone as body */
+}
+
+/* 7. Contact Section */
+.contact-box {
+    background: white;
+    border-color: var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.form-label {
+    color: var(--text-dark);
+}
+
+.form-input {
+    border-color: var(--border-color);
+}
+
+.form-input:focus {
+    border-color: var(--primary);
+}
+
+/* 8. Footer */
+footer {
+    background: var(--text-dark);
+    /* Keep footer dark for contrast, use the dark brown */
+    border-top: 1px solid var(--border-color);
+}
+
+footer a.logo {
+    color: white;
+    /* Ensure logo in footer is white against dark bg */
+}
+
+footer p {
+    color: #c9c3b8;
+    /* Lighter brown for muted footer text */
+}
+
+/* Responsive updates might need minor tweaks, but theme variables should propagate */
+@media (max-width: 768px) {
+    .nav-links {
+        background: #fffbea;
+        /* Use cream background for mobile menu */
+        border-bottom: 1px solid var(--border-color);
+    }
+}

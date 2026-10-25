@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valence Studio | Elite Websites, Branding & AI Solutions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#07090e',
+                        cardBg: 'rgba(15, 23, 42, 0.75)',
+                        goldAccent: '#d4af37',
+                        goldLight: '#f3e5ab',
+                        goldDark: '#aa7c11',
+                        blueAccent: '#00d2ff',
+                        blueDeep: '#0052d4'
+                    },
+                    fontFamily: {
+                        sans: ['Cinzel', 'Plus Jakarta Sans', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-obsidian text-gray-100 font-body relative overflow-x-hidden selection:bg-goldAccent selection:text-black">
+
+    <!-- Ambient Glowing Particle Canvas -->
+    <canvas id="ambientCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-obsidian/80 border-b border-gray-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Brand Logo with SVG Butterfly Symbol -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-10 h-10 flex items-center justify-center">
+                    <svg viewBox="0 0 100 100" class="w-full h-full transition-transform duration-500 group-hover:scale-110">
+                        <defs>
+                            <linearGradient id="goldGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f3e5ab" />
+                                <stop offset="50%" stop-color="#d4af37" />
+                                <stop offset="100%" stop-color="#aa7c11" />
+                            </linearGradient>
+                            <linearGradient id="blueGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00d2ff" />
+                                <stop offset="100%" stop-color="#0052d4" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Right Wing Gold V -->
+                        <path d="M 50 85 L 15 20 Q 35 30 50 50 Z" fill="url(#goldGradNav)" opacity="0.95"/>
+                        <!-- Left Wing Blue V -->
+                        <path d="M 50 85 L 85 20 Q 65 30 50 50 Z" fill="url(#blueGradNav)" opacity="0.95"/>
+                        <!-- Butterfly Body Antennae -->
+                        <path d="M 50 50 Q 42 30 38 20 M 50 50 Q 58 30 62 20" stroke="#f3e5ab" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <!-- Orbit Ring -->
+                        <ellipse cx="50" cy="52" rx="40" ry="14" fill="none" stroke="url(#goldGradNav)" stroke-width="1.5" transform="rotate(-18 50 52)"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-sans font-bold text-xl tracking-widest text-gradient bg-clip-text text-transparent bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent">VALENCE</span>
+                    <span class="block text-[10px] tracking-[0.3em] text-gray-400 font-sans uppercase -mt-1">STUDIO</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#services" class="hover:text-goldAccent transition-colors duration-200">Services</a>
+                <a href="#calculator" class="hover:text-goldAccent transition-colors duration-200">ROI Estimator</a>
+                <a href="#portfolio" class="hover:text-goldAccent transition-colors duration-200">Work</a>
+                <a href="#process" class="hover:text-goldAccent transition-colors duration-200">Process</a>
+                <a href="#contact" class="hover:text-goldAccent transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 transform hover:-translate-y-0.5">
+                <span>Start Project</span>
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-obsidian/95 border-b border-gray-800 px-6 py-4 flex flex-col gap-4">
+            <a href="#services" class="mobile-nav-link text-gray-300 hover:text-goldAccent">Services</a>
+            <a href="#calculator" class="mobile-nav-link text-gray-300 hover:text-goldAccent">ROI Estimator</a>
+            <a href="#portfolio" class="mobile-nav-link text-gray-300 hover:text-goldAccent">Work</a>
+            <a href="#process" class="mobile-nav-link text-gray-300 hover:text-goldAccent">Process</a>
+            <a href="#contact" class="mobile-nav-link text-gray-300 hover:text-goldAccent">Contact</a>
+            <a href="#contact" class="inline-block text-center py-2.5 rounded-full text-xs font-semibold uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent">Start Project</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 pt-16 pb-24 md:pt-28 md:pb-36 px-6 max-w-7xl mx-auto text-center">
+        <!-- Brand Tagline Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-goldAccent/10 to-blueAccent/10 border border-goldAccent/30 text-goldLight text-xs tracking-widest font-semibold uppercase mb-8 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-blueAccent animate-pulse"></span>
+            <span>Websites &bull; Branding &bull; Marketing &bull; AI Solutions</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="font-sans text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-white max-w-5xl mx-auto mb-8">
+            Valence Studio Builds <br class="hidden md:block"/>
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent">
+                High-Converting Digital Empires
+            </span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">
+            We merge luxury brand strategy, hyper-fast responsive web design, data-driven marketing, and cutting-edge AI integrations to scale your revenue.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+            <a href="#calculator" class="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-bold tracking-wider uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                <span>Calculate Project ROI</span>
+                <i class="fa-solid fa-calculator"></i>
+            </a>
+            <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-full text-sm font-semibold tracking-wider uppercase text-white bg-slate-900/80 hover:bg-slate-800 border border-goldAccent/30 hover:border-goldAccent transition-all duration-300 flex items-center justify-center gap-3">
+                <span>View Portfolio</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20 pt-10 border-t border-gray-800/80">
+            <div>
+                <h3 class="font-sans text-3xl font-bold text-goldAccent">3.8x</h3>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Avg. Client Revenue Growth</p>
+            </div>
+            <div>
+                <h3 class="font-sans text-3xl font-bold text-blueAccent">99.8%</h3>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">PageSpeed Performance</p>
+            </div>
+            <div>
+                <h3 class="font-sans text-3xl font-bold text-goldLight">100+</h3>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">High-Ticket Launches</p>
+            </div>
+            <div>
+                <h3 class="font-sans text-3xl font-bold text-blueAccent">24/7</h3>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">AI Automation Ready</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="relative z-10 py-24 bg-gradient-to-b from-obsidian via-slate-950 to-obsidian border-t border-gray-900 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-[0.3em] text-blueAccent mb-3">Core Expertise</h2>
+                <p class="font-sans text-3xl md:text-5xl font-extrabold text-white">Services Crafted for Dominance</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1: Websites -->
+                <div class="glass-card p-8 rounded-2xl border border-gray-800 hover:border-goldAccent/50 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="font-sans text-xl font-bold text-white mb-3 group-hover:text-goldAccent transition-colors">Websites & E-Commerce</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed font-light mb-6">High-speed, conversion-focused websites, bespoke web applications, and scalable online stores tailored for sales.</p>
+                    </div>
+                    <ul class="text-xs text-gray-400 space-y-2 border-t border-gray-800/80 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Responsive & Mobile First</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Custom Interactive Calculators</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Ultra-Fast Loading Speeds</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2: Branding -->
+                <div class="glass-card p-8 rounded-2xl border border-gray-800 hover:border-goldAccent/50 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-blueAccent/10 border border-blueAccent/30 flex items-center justify-center text-blueAccent text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h3 class="font-sans text-xl font-bold text-white mb-3 group-hover:text-blueAccent transition-colors">Brand Identity & Strategy</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed font-light mb-6">Command premium industry positioning with custom logo design, visual identity systems, taglines, and brand guidelines.</p>
+                    </div>
+                    <ul class="text-xs text-gray-400 space-y-2 border-t border-gray-800/80 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Logo & Symbol Design</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Visual Style Architecture</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Brand Voice & Pitch Decks</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3: Marketing -->
+                <div class="glass-card p-8 rounded-2xl border border-gray-800 hover:border-goldAccent/50 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="font-sans text-xl font-bold text-white mb-3 group-hover:text-goldAccent transition-colors">Performance Marketing</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed font-light mb-6">Targeted Google & Meta ad campaigns, SEO ranking, funnel optimization, and high-ROI digital user acquisition strategies.</p>
+                    </div>
+                    <ul class="text-xs text-gray-400 space-y-2 border-t border-gray-800/80 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> High-ROAS Paid Ads</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Search Engine Optimization</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-goldAccent text-[10px]"></i> Lead Generation Funnels</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4: AI Solutions -->
+                <div class="glass-card p-8 rounded-2xl border border-gray-800 hover:border-goldAccent/50 transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-blueAccent/10 border border-blueAccent/30 flex items-center justify-center text-blueAccent text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="font-sans text-xl font-bold text-white mb-3 group-hover:text-blueAccent transition-colors">AI & Smart Solutions</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed font-light mb-6">Automate your business workflows with custom AI chatbots, intelligent lead capture agents, and API integrations.</p>
+                    </div>
+                    <ul class="text-xs text-gray-400 space-y-2 border-t border-gray-800/80 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Custom AI Assistants</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Workflow Automations</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blueAccent text-[10px]"></i> Smart CRM Integrations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Price & ROI Calculator Section -->
+    <section id="calculator" class="relative z-10 py-24 px-6 max-w-7xl mx-auto">
+        <div class="glass-card p-8 md:p-12 rounded-3xl border border-goldAccent/30 shadow-[0_0_50px_rgba(212,175,55,0.1)]">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Details -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-goldAccent/10 border border-goldAccent/30 text-goldAccent text-xs uppercase font-semibold">
+                        <i class="fa-solid fa-calculator"></i> Live Estimate
+                    </div>
+                    <h2 class="font-sans text-3xl md:text-5xl font-extrabold text-white">Interactive Investment & ROI Estimator</h2>
+                    <p class="text-gray-400 text-sm md:text-base leading-relaxed">Customize your digital project stack below to receive an instant transparent pricing estimate and projected business growth impact.</p>
+
+                    <!-- Interactive Options -->
+                    <div class="space-y-4 pt-4">
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-gray-300 mb-2">1. Select Primary Scope</label>
+                            <div class="grid grid-cols-2 gap-3" id="scopeSelector">
+                                <button type="button" data-val="1200" class="scope-btn active p-3 rounded-xl border text-left text-xs font-semibold">
+                                    <span class="block text-white text-sm">Landing Page</span>
+                                    <span class="text-gray-400">$1,200 baseline</span>
+                                </button>
+                                <button type="button" data-val="2800" class="scope-btn p-3 rounded-xl border text-left text-xs font-semibold">
+                                    <span class="block text-white text-sm">Full Agency Site</span>
+                                    <span class="text-gray-400">$2,800 baseline</span>
+                                </button>
+                                <button type="button" data-val="4500" class="scope-btn p-3 rounded-xl border text-left text-xs font-semibold">
+                                    <span class="block text-white text-sm">E-Commerce Store</span>
+                                    <span class="text-gray-400">$4,500 baseline</span>
+                                </button>
+                                <button type="button" data-val="6500" class="scope-btn p-3 rounded-xl border text-left text-xs font-semibold">
+                                    <span class="block text-white text-sm">Enterprise & AI</span>
+                                    <span class="text-gray-400">$6,500 baseline</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase font-semibold text-gray-300 mb-2">2. Add-On Growth Accelerators</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center justify-between p-3 rounded-xl border border-gray-800 bg-obsidian/50 cursor-pointer hover:border-gray-700">
+                                    <span class="text-xs text-gray-300 flex items-center gap-2"><input type="checkbox" class="addon-check accent-goldAccent" value="800"> Complete Brand Identity Package</span>
+                                    <span class="text-xs text-goldAccent font-semibold">+$800</span>
+                                </label>
+                                <label class="flex items-center justify-between p-3 rounded-xl border border-gray-800 bg-obsidian/50 cursor-pointer hover:border-gray-700">
+                                    <span class="text-xs text-gray-300 flex items-center gap-2"><input type="checkbox" class="addon-check accent-goldAccent" value="1200"> Custom AI Chatbot & Lead Agent</span>
+                                    <span class="text-xs text-blueAccent font-semibold">+$1,200</span>
+                                </label>
+                                <label class="flex items-center justify-between p-3 rounded-xl border border-gray-800 bg-obsidian/50 cursor-pointer hover:border-gray-700">
+                                    <span class="text-xs text-gray-300 flex items-center gap-2"><input type="checkbox" class="addon-check accent-goldAccent" value="950"> Advanced Performance SEO Package</span>
+                                    <span class="text-xs text-goldAccent font-semibold">+$950</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Live Estimate Summary Box -->
+                <div class="lg:col-span-6">
+                    <div class="bg-slate-950 p-8 rounded-2xl border border-gray-800 text-center relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-blueAccent/10 rounded-full blur-2xl pointer-events-none"></div>
+                        <div class="absolute -left-10 -top-10 w-40 h-40 bg-goldAccent/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                        <p class="text-xs uppercase font-semibold tracking-widest text-gray-400 mb-2">Estimated Investment</p>
+                        <div class="font-sans text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent mb-4" id="totalEstimate">
+                            $2,800
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 my-6 p-4 rounded-xl bg-obsidian/80 border border-gray-800/80 text-left">
+                            <div>
+                                <span class="block text-[10px] text-gray-500 uppercase tracking-wider">Estimated Timeline</span>
+                                <span class="text-sm font-semibold text-white" id="estTimeline">2 - 3 Weeks</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] text-gray-500 uppercase tracking-wider">Projected Lead Boost</span>
+                                <span class="text-sm font-semibold text-blueAccent" id="estLeadBoost">+250% Growth</span>
+                            </div>
+                        </div>
+
+                        <a href="#contact" class="w-full block py-4 rounded-xl text-xs font-bold tracking-wider uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+                            Lock In This Estimate
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="relative z-10 py-24 bg-obsidian border-t border-gray-900 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <h2 class="text-xs uppercase font-bold tracking-[0.3em] text-goldAccent mb-3">Selected Showcase</h2>
+                    <p class="font-sans text-3xl md:text-5xl font-extrabold text-white">Recent Work & Results</p>
+                </div>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Item 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 group hover:border-goldAccent/50 transition-all duration-300">
+                    <div class="h-56 bg-slate-900 relative overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10"></div>
+                        <div class="text-center z-20">
+                            <span class="text-xs text-goldAccent font-mono tracking-widest">[ PROJECT SHOWCASE ]</span>
+                            <h4 class="font-sans text-xl font-bold text-white mt-1">Aethel E-Commerce Store</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[10px] uppercase tracking-wider font-semibold text-blueAccent">E-Commerce & Branding</span>
+                        <h3 class="font-sans text-lg font-bold text-white mt-1 mb-2">Luxury Watch Retail Platform</h3>
+                        <p class="text-xs text-gray-400 font-light mb-4">Increased store checkout conversions by 180% with an interactive product builder.</p>
+                        <div class="flex items-center justify-between text-xs pt-4 border-t border-gray-800/80">
+                            <span class="text-gray-400">Result: <strong class="text-white">+210% ROI</strong></span>
+                            <span class="text-goldAccent font-semibold">View Case Study &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 group hover:border-goldAccent/50 transition-all duration-300">
+                    <div class="h-56 bg-slate-900 relative overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10"></div>
+                        <div class="text-center z-20">
+                            <span class="text-xs text-blueAccent font-mono tracking-widest">[ PROJECT SHOWCASE ]</span>
+                            <h4 class="font-sans text-xl font-bold text-white mt-1">PCU Digital Portal</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[10px] uppercase tracking-wider font-semibold text-goldAccent">Web Platform & Design</span>
+                        <h3 class="font-sans text-lg font-bold text-white mt-1 mb-2">University Digital Experience</h3>
+                        <p class="text-xs text-gray-400 font-light mb-4">Modernized academic portal structure with dark sleek aesthetic & course selector.</p>
+                        <div class="flex items-center justify-between text-xs pt-4 border-t border-gray-800/80">
+                            <span class="text-gray-400">Result: <strong class="text-white">4.9/5 Rating</strong></span>
+                            <span class="text-goldAccent font-semibold">View Case Study &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 group hover:border-goldAccent/50 transition-all duration-300">
+                    <div class="h-56 bg-slate-900 relative overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-10"></div>
+                        <div class="text-center z-20">
+                            <span class="text-xs text-goldAccent font-mono tracking-widest">[ PROJECT SHOWCASE ]</span>
+                            <h4 class="font-sans text-xl font-bold text-white mt-1">Kinetix AI Agent</h4>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-[10px] uppercase tracking-wider font-semibold text-blueAccent">AI & Performance Marketing</span>
+                        <h3 class="font-sans text-lg font-bold text-white mt-1 mb-2">Automated SaaS Lead Funnel</h3>
+                        <p class="text-xs text-gray-400 font-light mb-4">Built an AI conversational sales rep that books qualified client meetings 24/7.</p>
+                        <div class="flex items-center justify-between text-xs pt-4 border-t border-gray-800/80">
+                            <span class="text-gray-400">Result: <strong class="text-white">350+ Leads/Mo</strong></span>
+                            <span class="text-goldAccent font-semibold">View Case Study &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="relative z-10 py-24 bg-gradient-to-b from-obsidian via-slate-950 to-obsidian border-t border-gray-900 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-[0.3em] text-blueAccent mb-3">Our Blueprint</h2>
+                <p class="font-sans text-3xl md:text-5xl font-extrabold text-white">How We Scale Your Brand</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="p-6 rounded-2xl border border-gray-800 bg-obsidian/60 relative">
+                    <span class="font-sans text-4xl font-extrabold text-goldAccent/30 mb-4 block">01</span>
+                    <h3 class="font-sans text-lg font-bold text-white mb-2">Discovery & Strategy</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed font-light">We analyze your target market, competitors, and revenue goals to craft a unique positioning strategy.</p>
+                </div>
+                <div class="p-6 rounded-2xl border border-gray-800 bg-obsidian/60 relative">
+                    <span class="font-sans text-4xl font-extrabold text-blueAccent/30 mb-4 block">02</span>
+                    <h3 class="font-sans text-lg font-bold text-white mb-2">Design & Architecture</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed font-light">We construct bespoke UI/UX designs, interactive calculators, and high-conversion wireframes.</p>
+                </div>
+                <div class="p-6 rounded-2xl border border-gray-800 bg-obsidian/60 relative">
+                    <span class="font-sans text-4xl font-extrabold text-goldAccent/30 mb-4 block">03</span>
+                    <h3 class="font-sans text-lg font-bold text-white mb-2">Development & AI</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed font-light">Engineered with ultra-fast code, responsive styling, SEO optimizations, and automated AI lead capture.</p>
+                </div>
+                <div class="p-6 rounded-2xl border border-gray-800 bg-obsidian/60 relative">
+                    <span class="font-sans text-4xl font-extrabold text-blueAccent/30 mb-4 block">04</span>
+                    <h3 class="font-sans text-lg font-bold text-white mb-2">Launch & Scale</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed font-light">We deploy your project, launch targeted marketing campaigns, and continuously optimize for sales growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Lead Capture Form -->
+    <section id="contact" class="relative z-10 py-24 px-6 max-w-7xl mx-auto">
+        <div class="glass-card p-8 md:p-12 rounded-3xl border border-gray-800">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs uppercase font-bold tracking-[0.3em] text-goldAccent">Let's Connect</span>
+                    <h2 class="font-sans text-3xl md:text-5xl font-extrabold text-white">Ready to Build Your Digital Empire?</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">Schedule a direct strategy call or send us a message. We typically respond within 2 hours with a detailed roadmap.</p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-gray-400 uppercase">Direct Email</span>
+                                <a href="mailto:hello@valencestudio.com" class="text-sm font-semibold text-white hover:text-goldAccent">hello@valencestudio.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-blueAccent/10 border border-blueAccent/30 flex items-center justify-center text-blueAccent">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-gray-400 uppercase">Services Worldwide</span>
+                                <span class="text-sm font-semibold text-white">Remote & Client On-Site</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contactForm" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-400 uppercase mb-1">Your Name</label>
+                                <input type="text" required placeholder="Sapna Gupta" class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gray-800 text-white text-sm focus:border-goldAccent focus:outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 uppercase mb-1">Email Address</label>
+                                <input type="email" required placeholder="sapna@example.com" class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gray-800 text-white text-sm focus:border-goldAccent focus:outline-none transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase mb-1">Service Required</label>
+                            <select class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gray-800 text-white text-sm focus:border-goldAccent focus:outline-none transition-colors">
+                                <option value="website">Websites & E-Commerce Development</option>
+                                <option value="branding">Brand Identity & Strategy</option>
+                                <option value="marketing">Performance Marketing & Ads</option>
+                                <option value="ai">AI Solutions & Automations</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-gray-400 uppercase mb-1">Project Details</label>
+                            <textarea rows="4" required placeholder="Tell us about your business goals, timeline, and requirements..." class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gray-800 text-white text-sm focus:border-goldAccent focus:outline-none transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl text-xs font-bold tracking-wider uppercase text-black bg-gradient-to-r from-goldLight via-goldAccent to-blueAccent hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+                            Send Inquiry & Get Roadmap
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-gray-900 bg-obsidian py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <span class="font-sans font-bold text-lg text-gradient bg-clip-text text-transparent bg-gradient-to-r from-goldLight to-blueAccent">VALENCE STUDIO</span>
+                <span class="text-xs text-gray-500">&bull; &copy; 2026 All Rights Reserved.</span>
+            </div>
+            <p class="text-xs text-gray-500">Crafted with precision for high-growth businesses.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
