@@ -4,544 +4,425 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VALENCE STUDIO | Websites, Branding & AI Solutions</title>
+    <title>Valence Studio | Elite Engineering & AI Solutions</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Fonts: Plus Jakarta Sans & Cinzel / Syne for luxury header vibes -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700&display=swap"
         rel="stylesheet">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            gold: '#D4AF37',
-                            goldLight: '#F3E5AB',
-                            blue: '#1E64FE',
-                            blueCyan: '#00D2FF',
-                            darkBg: '#090B10',
-                            canvas: '#F7F7F6',
-                            cardBg: '#FFFFFF'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        display: ['Cinzel', 'serif'],
-                        mono: ['Space Grotesk', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-
+    <!-- Custom CSS for Blueprint Grid -->
     <style>
-        /* Blueprint background grid effect */
         body {
-            background-color: #F7F7F6;
+            background-color: #F8FAFC;
             background-image:
-                linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        /* Gradient Metallic Text */
-        .text-gold-gradient {
-            background: linear-gradient(135deg, #F5D77F 0%, #C59B27 50%, #E8C15A 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .text-valence-gradient {
-            background: linear-gradient(135deg, #E2C066 0%, #4B8CFB 60%, #00D2FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Subtle Card Hover Effects */
-        .valence-card {
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .valence-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -15px rgba(30, 100, 254, 0.12);
-        }
-
-        /* Glow pulse animation for logo star */
-        @keyframes pulseGlow {
-
-            0%,
-            100% {
-                opacity: 0.8;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
-        }
-
-        .star-glow {
-            animation: pulseGlow 2.5s infinite ease-in-out;
-        }
-
-        /* Estimator Option Active State */
-        .estimator-btn.active {
-            border-color: #1E64FE !important;
-            background-color: #F0F5FF !important;
-            box-shadow: 0 0 0 2px rgba(30, 100, 254, 0.2);
+                linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
+            background-size: 32px 32px;
         }
     </style>
+    <link rel="stylesheet" href="css/style.css?v=21">
 </head>
 
-<body class="text-slate-900 font-sans selection:bg-brand-blue selection:text-white relative min-h-screen">
+<body class="text-slate-900 font-body relative selection:bg-[#2563EB] selection:text-white overflow-x-hidden">
 
-    <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 bg-[#F7F7F6]/85 backdrop-blur-md border-b border-slate-200/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
-
-            <!-- Logo Branding (SVG matching requested artwork) -->
+    <!-- Dark Top Navigation Bar (Exact match with screenshot) -->
+    <header class="sticky top-0 z-50 bg-[#0A0F1D] border-b border-slate-800 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center">
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 sm:w-11 sm:h-11 flex-shrink-0">
-                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
+                <!-- SVG Butterfly Logo -->
+                <div
+                    class="relative w-10 h-10 flex items-center justify-center bg-[#0F172A] border border-slate-800 rounded-xl">
+                    <svg viewBox="0 0 200 200" class="w-full h-full p-1" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#F5D77F" />
-                                <stop offset="50%" stop-color="#C59B27" />
-                                <stop offset="100%" stop-color="#8A640F" />
+                            <linearGradient id="vGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#2563EB" />
+                                <stop offset="100%" stop-color="#60A5FA" />
                             </linearGradient>
-                            <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#00D2FF" />
-                                <stop offset="70%" stop-color="#1E64FE" />
-                                <stop offset="100%" stop-color="#0A2540" />
+                            <linearGradient id="wingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3B82F6" />
+                                <stop offset="100%" stop-color="#C084FC" />
                             </linearGradient>
                         </defs>
-                        <!-- Left Wing / Gold V-Stem -->
-                        <path d="M 40 45 C 55 45, 80 80, 100 150 C 90 110, 75 70, 40 45 Z" fill="url(#goldGrad)" />
-                        <path d="M 35 48 C 65 50, 95 100, 100 150 C 75 120, 50 85, 35 48 Z" fill="url(#goldGrad)"
-                            opacity="0.9" />
-
-                        <!-- Right Wing / Blue Metallic V-Stem -->
-                        <path d="M 160 45 C 145 45, 120 80, 100 150 C 110 110, 125 70, 160 45 Z"
-                            fill="url(#blueGrad)" />
-                        <path d="M 165 48 C 135 50, 105 100, 100 150 C 125 120, 150 85, 165 48 Z" fill="url(#blueGrad)"
-                            opacity="0.9" />
-
-                        <!-- Center Butterfly Body -->
-                        <ellipse cx="100" cy="95" rx="2.5" ry="25" fill="#FFFFFF" />
-                        <path d="M 100 70 Q 92 50, 85 45" stroke="#00D2FF" stroke-width="1.5" fill="none" />
-                        <path d="M 100 70 Q 108 50, 115 45" stroke="#00D2FF" stroke-width="1.5" fill="none" />
-                        <circle cx="85" cy="45" r="2" fill="#00D2FF" />
-                        <circle cx="115" cy="45" r="2" fill="#00D2FF" />
-
-                        <!-- Orbital Ring -->
-                        <ellipse cx="100" cy="100" rx="75" ry="22" fill="none" stroke="url(#goldGrad)" stroke-width="2"
-                            transform="rotate(-15 100 100)" opacity="0.85" />
-
-                        <!-- Star Sparkle -->
-                        <path class="star-glow"
-                            d="M 160 85 L 163 92 L 170 95 L 163 98 L 160 105 L 157 98 L 150 95 L 157 92 Z"
-                            fill="#FFFFFF" />
+                        <path d="M 50 45 L 95 145 L 125 45" stroke="url(#vGrad)" stroke-width="22"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M 105 85 C 120 40, 165 30, 175 60 C 185 85, 145 105, 110 95 C 140 115, 160 145, 135 150 C 115 155, 102 120, 105 85 Z"
+                            fill="url(#wingGrad)" opacity="0.9" />
                     </svg>
                 </div>
-
-                <div class="flex flex-col leading-none">
-                    <span class="font-display font-extrabold text-lg tracking-wider text-slate-900">
-                        VALENCE <span class="text-brand-blue">STUDIO</span>
-                    </span>
-                    <span class="text-[9px] font-mono tracking-widest text-slate-500 uppercase mt-0.5">
-                        Websites / Branding / AI
-                    </span>
+                <div class="flex items-center gap-1.5">
+                    <span class="font-bold text-lg tracking-wider text-white">VALENCE</span>
+                    <span class="font-bold text-lg tracking-wider text-[#2563EB]">STUDIO</span>
                 </div>
             </a>
 
-            <!-- Nav Links -->
-            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
-                <a href="#services" class="hover:text-brand-blue transition">Services</a>
-                <a href="#estimator" class="hover:text-brand-blue transition">ROI Estimator</a>
-                <a href="#work" class="hover:text-brand-blue transition">Work</a>
-                <a href="#process" class="hover:text-brand-blue transition">Process</a>
-                <a href="#contact" class="hover:text-brand-blue transition">Contact</a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#services" class="hover:text-white transition">Services</a>
+                <a href="#estimator" class="hover:text-white transition">ROI Estimator</a>
+                <a href="#services" class="hover:text-white transition">Expertise</a>
+                <a href="#contact" class="hover:text-white transition">Give Contract</a>
             </nav>
 
-            <!-- CTA Button -->
             <a href="#contact"
-                class="bg-gradient-to-r from-brand-blue to-blue-600 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition duration-200 flex items-center gap-2">
-                <span>Book a Call</span>
-                <i class="fa-solid fa-arrow-right text-xs"></i>
+                class="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-full shadow-lg shadow-blue-500/30 transition flex items-center gap-2 text-sm">
+                Start Project <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="py-16 md:py-24 px-4 sm:px-6 max-w-6xl mx-auto text-center">
-        <!-- Status Pill -->
+    <section class="hero text-center py-20 px-6 max-w-5xl mx-auto relative z-10">
         <div
-            class="inline-flex items-center gap-2 bg-white border border-slate-200 shadow-sm rounded-full px-4 py-1.5 mb-8">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Available For New Projects</span>
+            class="status-badge mb-6 inline-flex items-center gap-2.5 bg-white border border-slate-200 rounded-full px-4 py-1.5 text-xs font-semibold text-[#2563EB] shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Elite Contracts Open for 2026 Cycle</span>
         </div>
 
-        <!-- Main Headline -->
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6">
-            Processional Designs<br />
-            <span class="text-valence-gradient">For Digital Products</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-4 text-[#111827]">
+            Architecting Elite<br />
+            <span class="text-[#2563EB] font-bold block mt-2">Digital Products & AI</span>
         </h1>
 
-        <p class="text-slate-600 text-base sm:text-xl max-w-2xl mx-auto font-normal leading-relaxed mb-10">
-            We design & build high-converting web applications, luxury brand identities, and custom AI workflows that
-            turn modern visitors into loyal clients.
+        <p class="text-[#64748B] text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
+            Modern websites and digital solutions built for growing businesses.
         </p>
 
-        <!-- CTAs -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
             <a href="#contact"
-                class="w-full sm:w-auto bg-gradient-to-r from-brand-blue to-blue-600 text-white font-semibold text-base px-8 py-3.5 rounded-full shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-3">
-                <span>Book a Strategy Call</span>
-                <i class="fa-solid fa-phone-volume text-sm"></i>
+                class="w-full sm:w-auto bg-[#2563EB] hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center justify-center gap-2">
+                Award Us Your Contract <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
-
-            <a href="#work"
-                class="w-full sm:w-auto bg-white border border-slate-200 text-slate-800 font-semibold text-base px-8 py-3.5 rounded-full shadow-sm hover:bg-slate-50 hover:border-slate-300 transition duration-200 flex items-center justify-center gap-2">
-                <span>View Previews</span>
-                <i class="fa-solid fa-eye text-sm text-slate-400"></i>
+            <a href="#pricing"
+                class="w-full sm:w-auto bg-[#0A0F1D] hover:bg-slate-800 text-white font-semibold px-8 py-4 rounded-xl transition">
+                View Pricing Plans
             </a>
         </div>
     </section>
 
-    <!-- Brand Services Pillars Section -->
-    <section id="services" class="py-12 px-4 sm:px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
-                <i class="fa-solid fa-globe text-2xl text-brand-blue mb-3"></i>
-                <h3 class="font-bold text-slate-900 text-sm">Websites</h3>
-                <p class="text-xs text-slate-500 mt-1">Full-stack platforms</p>
+    <!-- Core Capabilities Section -->
+    <section id="services" class="py-16 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-[#111827] mb-3">Core Capabilities & Deliverables</h2>
+            <p class="text-[#64748B] text-base">Everything your business needs to scale, automate, and perform.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-[#0A0F1D] border border-slate-800 p-6 rounded-2xl shadow-xl transition hover:scale-[1.02]">
+                <div
+                    class="w-12 h-12 rounded-xl bg-[#2563EB]/20 text-[#2563EB] flex items-center justify-center text-xl mb-4">
+                    <i class="fa-solid fa-laptop-code"></i></div>
+                <h3 class="text-lg font-bold text-[#FFFFFF] mb-2">Websites & Apps</h3>
+                <p class="text-[#CBD5E1] text-xs leading-relaxed">Lightning-fast websites and web apps built for your
+                    business.</p>
             </div>
-            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
-                <i class="fa-solid fa-wand-magic-sparkles text-2xl text-amber-500 mb-3"></i>
-                <h3 class="font-bold text-slate-900 text-sm">Branding</h3>
-                <p class="text-xs text-slate-500 mt-1">Identity & Systems</p>
+
+            <div class="bg-[#0A0F1D] border border-slate-800 p-6 rounded-2xl shadow-xl transition hover:scale-[1.02]">
+                <div
+                    class="w-12 h-12 rounded-xl bg-[#2563EB]/20 text-[#2563EB] flex items-center justify-center text-xl mb-4">
+                    <i class="fa-solid fa-chart-line"></i></div>
+                <h3 class="text-lg font-bold text-[#FFFFFF] mb-2">Marketing Funnels</h3>
+                <p class="text-[#CBD5E1] text-xs leading-relaxed">Conversion optimization and sales funnels to acquire
+                    clients.</p>
             </div>
-            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
-                <i class="fa-solid fa-chart-line text-2xl text-emerald-500 mb-3"></i>
-                <h3 class="font-bold text-slate-900 text-sm">Marketing</h3>
-                <p class="text-xs text-slate-500 mt-1">Conversion Funnels</p>
+
+            <div class="bg-[#0A0F1D] border border-slate-800 p-6 rounded-2xl shadow-xl transition hover:scale-[1.02]">
+                <div
+                    class="w-12 h-12 rounded-xl bg-[#2563EB]/20 text-[#2563EB] flex items-center justify-center text-xl mb-4">
+                    <i class="fa-solid fa-brain"></i></div>
+                <h3 class="text-lg font-bold text-[#FFFFFF] mb-2">AI Solutions & Agents</h3>
+                <p class="text-[#CBD5E1] text-xs leading-relaxed">Custom LLM integrations and automated workflows.</p>
             </div>
-            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm">
-                <i class="fa-solid fa-brain text-2xl text-purple-600 mb-3"></i>
-                <h3 class="font-bold text-slate-900 text-sm">AI Solutions</h3>
-                <p class="text-xs text-slate-500 mt-1">Smart Automation</p>
+
+            <div class="bg-[#0A0F1D] border border-slate-800 p-6 rounded-2xl shadow-xl transition hover:scale-[1.02]">
+                <div
+                    class="w-12 h-12 rounded-xl bg-[#2563EB]/20 text-[#2563EB] flex items-center justify-center text-xl mb-4">
+                    <i class="fa-solid fa-paintbrush"></i></div>
+                <h3 class="text-lg font-bold text-[#FFFFFF] mb-2">Luxury Branding</h3>
+                <p class="text-[#CBD5E1] text-xs leading-relaxed">Immersive design systems and blueprint-grid UI/UX.</p>
             </div>
         </div>
     </section>
 
-    <!-- Featured Work Grid -->
-    <section id="work" class="py-16 px-4 sm:px-6 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div>
-                <span class="text-xs font-mono font-bold tracking-widest text-brand-blue uppercase">Selected
-                    Portfolio</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Architected For Scalable Growth</h2>
+    <!-- PRICING TIERS -->
+    <section id="pricing" class="py-20 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <div
+                class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-[#2563EB] px-4 py-1.5 rounded-full text-xs font-semibold mb-3">
+                Flexible Contracts & Packages
             </div>
-            <p class="text-slate-500 text-sm max-w-md mt-3 md:mt-0">
-                Engineered with precision, premium aesthetics, and lightning-fast load performance.
+            <h2 class="text-3xl md:text-4xl font-extrabold text-[#111827] mb-3">Choose Your Engagement Plan</h2>
+            <p class="text-[#64748B] text-sm">Transparent pricing for startups, small businesses, and growing brands.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-            <!-- Work Card 1 -->
-            <div class="valence-card bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+            <div
+                class="bg-white border border-slate-200 rounded-3xl p-6 flex flex-col justify-between relative shadow-sm hover:border-[#2563EB] transition">
                 <div
-                    class="bg-slate-950 text-white rounded-2xl p-6 h-56 flex flex-col justify-between mb-5 relative overflow-hidden group">
-                    <div class="flex justify-between items-start">
-                        <span
-                            class="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-800 px-2.5 py-1 rounded-full">SaaS
-                            Architecture</span>
-                        <span class="text-slate-500 text-xs font-mono">01</span>
-                    </div>
-                    <div>
-                        <h3
-                            class="text-2xl font-bold tracking-tight text-white group-hover:text-brand-blueCyan transition">
-                            Design, Build & Deploy</h3>
-                        <p class="text-xs text-slate-400 mt-1">Cloud Next.js & Python Ecosystem</p>
-                    </div>
+                    class="absolute top-4 right-4 bg-blue-50 text-[#2563EB] text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    83% off</div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#111827] mb-2">Single</h3>
+                    <p class="text-[#64748B] text-xs mb-6 min-h-[32px]">Get your first website online. Best for
+                        beginners or simple projects.</p>
+                    <div class="text-slate-400 text-sm line-through mb-1">₹399</div>
+                    <div class="text-3xl font-extrabold text-[#111827] mb-6">₹69<span
+                            class="text-xs text-[#64748B] font-normal">/mo</span></div>
+                    <a href="#contact"
+                        class="block text-center w-full py-3 rounded-xl border border-slate-300 hover:border-[#2563EB] hover:bg-[#2563EB] hover:text-white text-[#111827] font-semibold text-sm transition mb-6">Choose
+                        plan</a>
                 </div>
-                <h4 class="font-bold text-slate-900 text-lg mb-1">Web Platform Engineering</h4>
-                <p class="text-slate-500 text-sm">Full-stack web applications with responsive UI/UX and custom workflow
-                    integrations.</p>
             </div>
 
-            <!-- Work Card 2 -->
-            <div class="valence-card bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+            <div
+                class="bg-white border border-slate-200 rounded-3xl p-6 flex flex-col justify-between relative shadow-sm hover:border-[#2563EB] transition">
                 <div
-                    class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-2xl p-6 h-56 flex flex-col justify-between mb-5 relative overflow-hidden group">
-                    <div class="flex justify-between items-start">
-                        <span
-                            class="text-xs font-mono font-bold text-brand-blueCyan bg-blue-950/80 border border-blue-800 px-2.5 py-1 rounded-full">Scale
-                            & Performance</span>
-                        <span class="text-slate-500 text-xs font-mono">02</span>
-                    </div>
-                    <div>
-                        <h3
-                            class="text-2xl font-bold tracking-tight text-white group-hover:text-brand-goldLight transition">
-                            Built For Fast, Aligned Growth</h3>
-                        <p class="text-xs text-slate-300 mt-1">High-traffic E-Commerce</p>
-                    </div>
+                    class="absolute top-4 right-4 bg-blue-50 text-[#2563EB] text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    80% off</div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#111827] mb-2">Premium</h3>
+                    <p class="text-[#64748B] text-xs mb-6 min-h-[32px]">Run websites smoothly. Great for creators and
+                        small brands.</p>
+                    <div class="text-slate-400 text-sm line-through mb-1">₹679</div>
+                    <div class="text-3xl font-extrabold text-[#111827] mb-6">₹139<span
+                            class="text-xs text-[#64748B] font-normal">/mo</span></div>
+                    <a href="#contact"
+                        class="block text-center w-full py-3 rounded-xl border border-slate-300 hover:border-[#2563EB] hover:bg-[#2563EB] hover:text-white text-[#111827] font-semibold text-sm transition mb-6">Choose
+                        plan</a>
                 </div>
-                <h4 class="font-bold text-slate-900 text-lg mb-1">E-Commerce Ecosystems</h4>
-                <p class="text-slate-500 text-sm">Lightning-fast storefronts built for conversion optimization and high
-                    traffic.</p>
             </div>
 
-            <!-- Work Card 3 -->
-            <div class="valence-card bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+            <div
+                class="bg-[#0A0F1D] border-2 border-[#2563EB] rounded-3xl p-6 flex flex-col justify-between relative shadow-2xl scale-[1.02]">
                 <div
-                    class="bg-slate-900 text-white rounded-2xl p-6 h-56 flex flex-col justify-between mb-5 relative overflow-hidden group">
-                    <div class="flex justify-between items-start">
-                        <span
-                            class="text-xs font-mono font-bold text-amber-400 bg-amber-950/80 border border-amber-800 px-2.5 py-1 rounded-full">Personal
-                            Brand</span>
-                        <span class="text-slate-500 text-xs font-mono">03</span>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold tracking-tight text-white group-hover:text-amber-300 transition">
-                            Launch a Site That Wins Opportunities</h3>
-                        <p class="text-xs text-slate-400 mt-1">Luxury Founder Platforms</p>
-                    </div>
+                    class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2563EB] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    Special Offer • 75% Off</div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#FFFFFF] mb-2 mt-2">Unlimited</h3>
+                    <p class="text-[#CBD5E1] text-xs mb-6 min-h-[32px]">Unlimited websites and mailboxes, plus AI tools
+                        and priority support.</p>
+                    <div class="text-slate-500 text-sm line-through mb-1">₹799</div>
+                    <div class="text-3xl font-extrabold text-[#FFFFFF] mb-6">₹199<span
+                            class="text-xs text-[#CBD5E1] font-normal">/mo</span></div>
+                    <a href="#contact"
+                        class="block text-center w-full py-3 rounded-xl bg-[#2563EB] hover:bg-blue-700 text-white font-semibold text-sm transition shadow-lg mb-6">Choose
+                        plan</a>
                 </div>
-                <h4 class="font-bold text-slate-900 text-lg mb-1">Executive Portfolios</h4>
-                <p class="text-slate-500 text-sm">Custom landing platforms crafted specifically for founders,
-                    consultants, and agencies.</p>
             </div>
 
+            <div
+                class="bg-white border border-slate-200 rounded-3xl p-6 flex flex-col justify-between relative shadow-sm hover:border-[#2563EB] transition">
+                <div
+                    class="absolute top-4 right-4 bg-rose-50 text-rose-600 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    65% off</div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#111827] mb-2">Ecommerce Startup</h3>
+                    <p class="text-[#64748B] text-xs mb-6 min-h-[32px]">Everything you need to launch and grow an online
+                        store.</p>
+                    <div class="text-slate-400 text-sm line-through mb-1">₹1,699</div>
+                    <div class="text-3xl font-extrabold text-[#111827] mb-6">₹599<span
+                            class="text-xs text-[#64748B] font-normal">/mo</span></div>
+                    <a href="#contact"
+                        class="block text-center w-full py-3 rounded-xl border border-slate-300 hover:border-[#2563EB] hover:bg-[#2563EB] hover:text-white text-[#111827] font-semibold text-sm transition mb-6">Choose
+                        plan</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Interactive Cost & Scope Estimator -->
-    <section id="estimator" class="py-16 px-4 sm:px-6 max-w-4xl mx-auto">
-        <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg">
-            <div class="text-center max-w-lg mx-auto mb-8">
-                <span class="text-xs font-mono font-bold tracking-widest text-brand-blue uppercase">Instant Quote</span>
-                <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Project Cost Estimator</h2>
-                <p class="text-slate-500 text-sm mt-2">Select your scope requirements to estimate your investment
-                    roadmap.</p>
+    <!-- Contract Form Section (Matched 100% to your screenshot) -->
+    <section id="contact" class="py-20 px-6 max-w-4xl mx-auto relative z-10">
+        <div class="bg-[#1E293B] border border-slate-700/80 p-8 md:p-12 rounded-3xl shadow-2xl text-white">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h2 class="text-4xl font-extrabold text-white mb-3 tracking-tight">Award Us Your Contract</h2>
+                <p class="text-slate-300 text-sm">Fill out your project details below, or reach out directly through our
+                    lines.</p>
             </div>
 
-            <!-- Options -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                <button type="button"
-                    class="estimator-btn active bg-white border border-slate-200 rounded-2xl p-5 text-left transition"
-                    data-price="2500" onclick="selectTier(this, 2500)">
-                    <div class="text-xs font-mono text-brand-blue font-bold uppercase mb-1">Standard</div>
-                    <div class="font-bold text-slate-900 text-base">Landing Page</div>
-                    <div class="text-xs text-slate-500 mt-2">$2,500 base scope</div>
-                </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <a href="tel:8263801553"
+                    class="p-4 bg-[#0F172A] border border-slate-700/60 hover:border-[#2563EB] rounded-2xl flex items-center gap-4 transition group">
+                    <div
+                        class="w-11 h-11 rounded-xl bg-[#2563EB] text-white flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-400 font-bold block uppercase tracking-wider">CALL /
+                            WHATSAPP</span>
+                        <span class="text-white font-extrabold text-sm">+91 82638 01553</span>
+                    </div>
+                </a>
 
-                <button type="button"
-                    class="estimator-btn bg-white border border-slate-200 rounded-2xl p-5 text-left transition"
-                    data-price="4500" onclick="selectTier(this, 4500)">
-                    <div class="text-xs font-mono text-brand-blue font-bold uppercase mb-1">Growth</div>
-                    <div class="font-bold text-slate-900 text-base">Web Application</div>
-                    <div class="text-xs text-slate-500 mt-2">$4,500 base scope</div>
-                </button>
-
-                <button type="button"
-                    class="estimator-btn bg-white border border-slate-200 rounded-2xl p-5 text-left transition"
-                    data-price="7500" onclick="selectTier(this, 7500)">
-                    <div class="text-xs font-mono text-brand-blue font-bold uppercase mb-1">Enterprise</div>
-                    <div class="font-bold text-slate-900 text-base">Full Digital Suite</div>
-                    <div class="text-xs text-slate-500 mt-2">$7,500 base scope</div>
-                </button>
-            </div>
-
-            <!-- Add-ons -->
-            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 mb-8">
-                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-3">Optional
-                    Add-ons:</span>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                    <label class="flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" id="addonBranding"
-                            class="w-4 h-4 text-brand-blue rounded border-slate-300" onchange="calculateTotal()">
-                        <span class="text-slate-700">Brand Identity Package (+$1,200)</span>
-                    </label>
-                    <label class="flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" id="addonAI" class="w-4 h-4 text-brand-blue rounded border-slate-300"
-                            onchange="calculateTotal()">
-                        <span class="text-slate-700">Custom AI Integration (+$1,500)</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Calculation Display -->
-            <div
-                class="bg-slate-900 text-white rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <div>
-                    <span class="text-xs text-slate-400 block font-mono">ESTIMATED INVESTMENT</span>
-                    <span id="totalEstimateDisplay" class="text-4xl font-extrabold text-brand-goldLight">$2,500</span>
-                </div>
-                <a href="#contact"
-                    class="w-full sm:w-auto bg-gradient-to-r from-brand-blue to-blue-500 text-white font-semibold text-sm px-6 py-3 rounded-full hover:shadow-lg hover:shadow-blue-500/30 transition text-center">
-                    Lock In Estimate
+                <a href="tel:8446918580"
+                    class="p-4 bg-[#0F172A] border border-slate-700/60 hover:border-[#2563EB] rounded-2xl flex items-center gap-4 transition group">
+                    <div
+                        class="w-11 h-11 rounded-xl bg-[#0B132B] text-[#2563EB] flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-400 font-bold block uppercase tracking-wider">ALTERNATE
+                            CONTACT</span>
+                        <span class="text-white font-extrabold text-sm">+91 84469 18580</span>
+                    </div>
                 </a>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4 sm:px-6 max-w-4xl mx-auto">
-        <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-12 shadow-xl">
-            <div class="text-center max-w-xl mx-auto mb-10">
-                <span class="text-xs font-mono font-bold tracking-widest text-brand-blue uppercase">Let's Work
-                    Together</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Ready to Build Your Digital Product?
-                </h2>
-                <p class="text-slate-500 text-sm mt-2">Send us your project details or inquiries and our strategy team
-                    will reach out within 24 hours.</p>
-            </div>
-
-            <form id="contactForm" class="space-y-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <form id="contactForm" class="space-y-6" onsubmit="submitForm(event)">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="name"
-                            class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Your
-                            Name</label>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">YOUR
+                            NAME / COMPANY</label>
                         <input type="text" id="name" required placeholder="Sapna Gupta"
-                            class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition">
+                            class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-[#2563EB] outline-none transition font-medium">
                     </div>
                     <div>
-                        <label for="email"
-                            class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Email
-                            Address</label>
-                        <input type="email" id="email" required placeholder="sapna@valence.studio"
-                            class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition">
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">EMAIL
+                            ADDRESS</label>
+                        <input type="email" id="email" required placeholder="valencestudio7@gmail.com"
+                            class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-[#2563EB] outline-none transition font-medium">
                     </div>
                 </div>
 
                 <div>
-                    <label for="service"
-                        class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Service
-                        Required</label>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">SERVICE /
+                        CONTRACT SCOPE</label>
                     <select id="service"
-                        class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition">
-                        <option value="Websites & Web Engineering">Websites & Full-Stack Web Engineering</option>
-                        <option value="Branding & Design System">Luxury Branding & Identity System</option>
-                        <option value="AI Solutions & Automations">AI Solutions & Workflow Automation</option>
-                        <option value="Full Digital Package">Full Digital Package (Web + Brand + AI)</option>
+                        class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-[#2563EB] outline-none transition font-medium">
+                        <option value="Websites & Custom Apps">Websites & Custom Apps ($2,500+)</option>
+                        <option value="Single Plan">Single Plan - ₹69/mo</option>
+                        <option value="Premium Plan">Premium Plan - ₹139/mo</option>
+                        <option value="Unlimited Plan">Unlimited Plan - ₹199/mo</option>
+                        <option value="Ecommerce Startup">Ecommerce Startup - ₹599/mo</option>
                     </select>
                 </div>
 
                 <div>
-                    <label for="details"
-                        class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Project
-                        Details</label>
-                    <textarea id="details" rows="4"
-                        placeholder="Tell us about your project goals, timelines, or specific features required..."
-                        class="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-brand-blue focus:bg-white transition"></textarea>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">PROJECT
+                        REQUIREMENTS & TIMELINE</label>
+                    <textarea id="details" rows="4" placeholder="Tell us about your project goals and scope..."
+                        class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-[#2563EB] outline-none transition font-medium"></textarea>
                 </div>
 
                 <button type="submit" id="submitBtn"
-                    class="w-full bg-gradient-to-r from-brand-blue to-blue-600 text-white font-bold text-base py-4 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-2">
-                    <span>Send Inquiry & Get Roadmap</span>
-                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                    class="w-full bg-[#2563EB] hover:bg-blue-600 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition text-base flex items-center justify-center gap-2">
+                    Submit Contract Proposal <i class="fa-solid fa-paper-plane text-sm ml-1"></i>
                 </button>
-
                 <p id="formStatus" class="text-center text-sm font-semibold mt-4 hidden"></p>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-slate-200/80 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
-
-            <div class="flex items-center gap-3">
-                <span class="font-display font-bold text-slate-900 tracking-wider text-sm">VALENCE STUDIO</span>
-                <span class="text-slate-300">|</span>
-                <span class="text-xs text-slate-500 font-mono">Websites / Branding / Marketing / AI Solutions</span>
+    <!-- Multi-Column Footer in Exact Dark Theme as Screenshot Header -->
+    <footer class="bg-[#0A0F1D] border-t border-slate-800 text-white pt-16 pb-12 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <!-- Col 1 -->
+            <div class="col-span-2 md:col-span-1">
+                <div class="flex items-center gap-2 text-white font-bold text-lg tracking-tight mb-4">
+                    <span>VALENCE <span class="text-[#2563EB]">STUDIO</span></span>
+                </div>
+                <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+                    Engineering elite digital experiences, high-converting websites, advanced AI solutions, and powerful
+                    brand identities.
+                </p>
+                <div class="text-slate-300 font-semibold text-xs space-y-1">
+                    <p><i class="fa-solid fa-phone text-[#2563EB] mr-2"></i>+91 8263801553</p>
+                    <p><i class="fa-solid fa-envelope text-[#2563EB] mr-2"></i>valencestudio7@gmail.com</p>
+                </div>
             </div>
 
-            <p class="text-xs text-slate-400">
-                © 2026 VALENCE STUDIO. All rights reserved.
-            </p>
+            <!-- Col 2: Websites -->
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Websites</h4>
+                <ul class="space-y-2.5 text-sm text-slate-400">
+                    <li><a href="#pricing" class="hover:text-white transition">Single Plan</a></li>
+                    <li><a href="#pricing" class="hover:text-white transition">Premium Sites</a></li>
+                    <li><a href="#pricing" class="hover:text-white transition">Unlimited Suite</a></li>
+                    <li><a href="#pricing" class="hover:text-white transition">Ecommerce Startup</a></li>
+                </ul>
+            </div>
 
+            <!-- Col 3: Marketing & AI -->
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Marketing & AI</h4>
+                <ul class="space-y-2.5 text-sm text-slate-400">
+                    <li><a href="#services" class="hover:text-white transition">AI Solutions & Agents</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Conversion Optimization</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Growth Strategy</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Branding -->
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Branding & Company</h4>
+                <ul class="space-y-2.5 text-sm text-slate-400">
+                    <li><a href="#services" class="hover:text-white transition">Brand Identity & UI/UX</a></li>
+                    <li><a href="#contact" class="hover:text-white transition">Give Us Contract</a></li>
+                    <li><a href="#contact" class="hover:text-white transition">Direct Support</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+            class="max-w-7xl mx-auto pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+            <p>© 2026 Valence Studio. All Rights Reserved. Engineered for Excellence.</p>
+            <div class="flex gap-4">
+                <a href="tel:8263801553" class="hover:text-white transition"><i class="fa-solid fa-phone"></i> +91
+                    8263801553</a>
+                <a href="mailto:valencestudio7@gmail.com" class="hover:text-white transition"><i
+                        class="fa-solid fa-envelope"></i> valencestudio7@gmail.com</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Interactive JavaScript Logic -->
     <script>
-        let currentBasePrice = 2500;
+        async function submitForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const details = document.getElementById('details').value;
+            const statusEl = document.getElementById('formStatus');
+            const btn = document.getElementById('submitBtn');
 
-        function selectTier(element, price) {
-            document.querySelectorAll('.estimator-btn').forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
-            currentBasePrice = price;
-            calculateTotal();
-        }
-
-        function calculateTotal() {
-            let total = currentBasePrice;
-            if (document.getElementById('addonBranding').checked) total += 1200;
-            if (document.getElementById('addonAI').checked) total += 1500;
-
-            document.getElementById('totalEstimateDisplay').innerText = '$' + total.toLocaleString();
-        }
-
-        // Backend Form Submission handling
-        document.getElementById('contactForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const submitBtn = document.getElementById('submitBtn');
-            const formStatus = document.getElementById('formStatus');
-
-            const payload = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                service: document.getElementById('service').value,
-                details: document.getElementById('details').value
-            };
-
-            submitBtn.disabled = true;
-            submitBtn.innerText = 'Sending Inquiry...';
+            btn.disabled = true;
+            btn.innerText = 'Submitting Contract Proposal...';
 
             try {
                 const response = await fetch('/api/contact', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify({ name, email, service, details })
                 });
+                const result = await response.json();
 
-                const resData = await response.json();
-
-                formStatus.classList.remove('hidden', 'text-red-500', 'text-emerald-600');
-                if (response.ok && resData.success) {
-                    formStatus.classList.add('text-emerald-600');
-                    formStatus.innerText = "✓ Inquiry Sent Successfully! We will contact you shortly.";
+                statusEl.classList.remove('hidden');
+                if (response.ok) {
+                    statusEl.className = 'text-center text-sm font-semibold mt-4 text-emerald-400';
+                    statusEl.innerText = '🎉 Proposal submitted successfully! We will contact you shortly.';
                     document.getElementById('contactForm').reset();
                 } else {
-                    formStatus.classList.add('text-red-500');
-                    formStatus.innerText = resData.message || "Something went wrong. Please try again.";
+                    statusEl.className = 'text-center text-sm font-semibold mt-4 text-rose-400';
+                    statusEl.innerText = result.message || 'Something went wrong. Please try again.';
                 }
             } catch (err) {
-                formStatus.classList.remove('hidden');
-                formStatus.classList.add('text-red-500');
-                formStatus.innerText = "Connection Error. Please check your backend server.";
+                statusEl.classList.remove('hidden');
+                statusEl.className = 'text-center text-sm font-semibold mt-4 text-rose-400';
+                statusEl.innerText = 'Network error. Please check your connection.';
             } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span>Send Inquiry & Get Roadmap</span> <i class="fa-solid fa-paper-plane text-xs"></i>';
+                btn.disabled = false;
+                btn.innerHTML = 'Submit Contract Proposal <i class="fa-solid fa-paper-plane text-sm ml-1"></i>';
             }
-        });
+        }
     </script>
 </body>
 
