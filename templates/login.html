@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block title %}Client Login | Valence Studio{% endblock %}
+{% block head_extra %}
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { corePlugins: { container: false } };</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+{% endblock %}
+{% block body_class %}min-h-screen flex flex-col{% endblock %}
+{% block content %}
+<main class="flex-1 py-12 px-4 sm:px-6 max-w-3xl mx-auto w-full">
+        <div class="bg-[#1E293B] border border-slate-700/80 p-8 md:p-12 rounded-3xl shadow-2xl text-white">
+
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span
+                    class="bg-blue-500/10 border border-blue-500/30 text-[#60A5FA] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                    Welcome Back
+                </span>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">Client Login</h1>
+                <p class="text-slate-300 text-xs md:text-sm">Enter your email and we will send you a 6-digit code.</p>
+            </div>
+
+            <!-- STEP 1: Email -->
+            <form id="loginForm" class="space-y-6 max-w-md mx-auto" onsubmit="handleLogin(event)">
+                <div>
+                    <label for="loginEmail" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">GMAIL ADDRESS</label>
+                    <input type="email" id="loginEmail" required maxlength="100" placeholder="you@gmail.com" autocomplete="email"
+                        class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-blue-600 outline-none transition font-medium text-sm">
+                </div>
+                <button type="submit" id="loginBtn"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition text-sm flex items-center justify-center gap-2">
+                    Send Login Code <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+                <p class="text-center text-xs text-slate-300">New here? <a href="/register"
+                        class="font-bold text-[#60A5FA] hover:text-white transition">Create an account</a></p>
+            </form>
+
+            <!-- STEP 2: OTP (hidden initially) -->
+            <div id="otpSection" class="hidden text-center py-6">
+                <div
+                    class="w-16 h-16 bg-blue-600/20 border border-blue-500/40 text-blue-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-envelope-circle-check"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Enter Your Code</h3>
+                <p class="text-slate-300 text-xs mb-6 max-w-sm mx-auto">
+                    If an account exists for <span id="targetEmailDisplay" class="font-bold text-blue-400"></span>, we have sent a 6-digit code. It is valid for 10 minutes.
+                </p>
+                <div class="max-w-xs mx-auto space-y-4">
+                    <input type="text" id="otpInput" maxlength="6" inputmode="numeric" autocomplete="one-time-code" placeholder="Enter 6-digit OTP"
+                        class="w-full p-4 text-center text-xl font-bold tracking-widest text-slate-900 bg-white border border-slate-300 rounded-xl outline-none focus:border-blue-600">
+                    <button onclick="verifyLoginOtp()" id="verifyBtn"
+                        class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition text-sm flex items-center justify-center gap-2">
+                        Verify & Log In <i class="fa-solid fa-circle-check"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Status Message -->
+            <p id="loginStatus" class="text-center text-xs font-semibold mt-4 hidden" role="status" aria-live="polite"></p>
+        </div>
+    </main>
+{% endblock %}
+{% block scripts %}
+<script>
+        function showStatus(text, isError) {
+            const el = document.getElementById('loginStatus');
+            el.className = "text-center text-xs font-semibold mt-4 " + (isError ? "text-red-400" : "text-emerald-400");
+            el.innerText = text;
+        }
+
+        async function postJson(url, payload) {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            try { return await response.json(); }
+            catch (_) { return { success: false, message: "Unexpected server response. Please try again." }; }
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('loginBtn');
+            const email = document.getElementById('loginEmail').value;
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sending...`;
+            try {
+                const res = await postJson('/api/login', { email });
+                if (res.success) {
+                    document.getElementById('loginForm').classList.add('hidden');
+                    document.getElementById('otpSection').classList.remove('hidden');
+                    document.getElementById('targetEmailDisplay').innerText = email;
+                    showStatus(res.message, false);
+                } else {
+                    showStatus(res.message, true);
+                    btn.disabled = false;
+                    btn.innerHTML = `Send Login Code <i class="fa-solid fa-paper-plane text-xs"></i>`;
+                }
+            } catch (err) {
+                showStatus("Network error. Please try again.", true);
+                btn.disabled = false;
+                btn.innerHTML = `Send Login Code <i class="fa-solid fa-paper-plane text-xs"></i>`;
+            }
+        }
+
+        async function verifyLoginOtp() {
+            const otp = document.getElementById('otpInput').value.trim();
+            const btn = document.getElementById('verifyBtn');
+            if (otp.length !== 6) {
+                showStatus("Please enter a valid 6-digit OTP code.", true);
+                return;
+            }
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Verifying...`;
+            try {
+                const res = await postJson('/api/verify-otp', { otp });
+                if (res.success) {
+                    showStatus(res.message, false);
+                    setTimeout(() => { window.location.href = '/pricing#contact'; }, 1000);
+                } else {
+                    showStatus(res.message, true);
+                    btn.disabled = false;
+                    btn.innerHTML = `Verify & Log In <i class="fa-solid fa-circle-check"></i>`;
+                }
+            } catch (err) {
+                showStatus("Network error. Please try again.", true);
+                btn.disabled = false;
+                btn.innerHTML = `Verify & Log In <i class="fa-solid fa-circle-check"></i>`;
+            }
+        }
+    </script>
+{% endblock %}

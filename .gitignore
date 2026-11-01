@@ -1,0 +1,10 @@
+# Secrets and local data - never commit these
+.env
+instance/
+*.db
+
+# Python / editor
+venv/
+__pycache__/
+*.pyc
+.vscode/
