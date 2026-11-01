@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% block title %}Share Feedback | Valence Studio{% endblock %}
+{% block head_extra %}
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { corePlugins: { container: false } };</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+.star-btn { color: #64748b; transition: color .15s, transform .15s; line-height: 1; }
+        .star-btn.star-on { color: #60A5FA; }
+        .star-btn:hover { transform: scale(1.12); }
+</style>
+{% endblock %}
+{% block body_class %}min-h-screen flex flex-col{% endblock %}
+{% block content %}
+<main class="flex-1 py-12 px-4 sm:px-6 max-w-3xl mx-auto w-full">
+        <div class="bg-[#1E293B] border border-slate-700/80 p-8 md:p-12 rounded-3xl shadow-2xl text-white">
+
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span
+                    class="bg-blue-500/10 border border-blue-500/30 text-[#60A5FA] px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                    We Value Your Opinion
+                </span>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-3 mb-2 tracking-tight">Share Your Feedback</h1>
+                <p class="text-slate-300 text-xs md:text-sm">Tell us about your experience with Valence Studio. No account needed.</p>
+            </div>
+
+            <form id="feedbackForm" class="space-y-6" onsubmit="handleFeedback(event)">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="fbName" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">YOUR NAME</label>
+                        <input type="text" id="fbName" required minlength="2" maxlength="100" placeholder="Your Name" autocomplete="name"
+                            class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-blue-600 outline-none transition font-medium text-sm">
+                    </div>
+                    <div>
+                        <label for="fbEmail" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">EMAIL ADDRESS</label>
+                        <input type="email" id="fbEmail" required maxlength="100" placeholder="you@example.com" autocomplete="email"
+                            class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-blue-600 outline-none transition font-medium text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <span id="ratingLabel" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">YOUR RATING</span>
+                    <div id="starGroup" class="flex items-center gap-2" role="radiogroup" aria-labelledby="ratingLabel">
+                        <button type="button" class="star-btn text-3xl md:text-4xl rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" data-value="1" role="radio" aria-checked="false" aria-label="1 star">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                        <button type="button" class="star-btn text-3xl md:text-4xl rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" data-value="2" role="radio" aria-checked="false" aria-label="2 stars">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                        <button type="button" class="star-btn text-3xl md:text-4xl rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" data-value="3" role="radio" aria-checked="false" aria-label="3 stars">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                        <button type="button" class="star-btn text-3xl md:text-4xl rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" data-value="4" role="radio" aria-checked="false" aria-label="4 stars">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                        <button type="button" class="star-btn text-3xl md:text-4xl rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" data-value="5" role="radio" aria-checked="false" aria-label="5 stars">
+                            <i class="fa-solid fa-star"></i>
+                        </button>
+                        <span id="ratingText" class="ml-3 text-xs font-semibold text-slate-300">Tap a star to rate</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="fbMessage" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">YOUR FEEDBACK</label>
+                    <textarea id="fbMessage" rows="5" required minlength="10" maxlength="2000"
+                        placeholder="What did you like? What can we improve?"
+                        class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-blue-600 outline-none transition font-medium text-sm"></textarea>
+                    <p id="msgCount" class="text-right text-[11px] text-slate-400 mt-1">0 / 2000</p>
+                </div>
+
+                <!-- Spam trap: hidden from real visitors, bots tend to fill it -->
+                <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+                    <label>Website <input type="text" id="fbWebsite" tabindex="-1" autocomplete="off"></label>
+                </div>
+
+                <button type="submit" id="fbSubmitBtn"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition text-sm flex items-center justify-center gap-2">
+                    Submit Feedback <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </form>
+
+            <!-- Success card (hidden initially) -->
+            <div id="fbSuccess" class="hidden text-center py-6">
+                <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Thank You!</h3>
+                <p class="text-slate-300 text-xs mb-6">Your feedback has been submitted successfully. We really appreciate you taking the time.</p>
+                <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-xs transition">Return to Home</a>
+            </div>
+
+            <!-- Status Message -->
+            <p id="fbStatus" class="text-center text-xs font-semibold mt-4 hidden" role="status" aria-live="polite"></p>
+        </div>
+    </main>
+{% endblock %}
+{% block scripts %}
+<script>
+        let rating = 0;
+        const stars = Array.from(document.querySelectorAll('.star-btn'));
+        const ratingText = document.getElementById('ratingText');
+        const ratingNames = ['Tap a star to rate', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+
+        function paintStars(n) {
+            stars.forEach((btn, i) => btn.classList.toggle('star-on', i < n));
+        }
+        function setRating(n) {
+            rating = n;
+            stars.forEach((btn, i) => btn.setAttribute('aria-checked', String(i + 1 === n)));
+            paintStars(n);
+            ratingText.textContent = n ? `${n}/5 - ${ratingNames[n]}` : ratingNames[0];
+        }
+        stars.forEach((btn, i) => {
+            btn.addEventListener('click', () => setRating(i + 1));
+            btn.addEventListener('mouseenter', () => paintStars(i + 1));
+            btn.addEventListener('mouseleave', () => paintStars(rating));
+        });
+
+        const msg = document.getElementById('fbMessage');
+        msg.addEventListener('input', () => {
+            document.getElementById('msgCount').textContent = `${msg.value.length} / 2000`;
+        });
+
+        function showStatus(text, isError) {
+            const el = document.getElementById('fbStatus');
+            el.className = "text-center text-xs font-semibold mt-4 " + (isError ? "text-red-400" : "text-emerald-400");
+            el.innerText = text;
+        }
+
+        async function handleFeedback(e) {
+            e.preventDefault();
+            const btn = document.getElementById('fbSubmitBtn');
+
+            if (!rating) {
+                showStatus("Please select a star rating from 1 to 5.", true);
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sending...`;
+
+            const payload = {
+                name: document.getElementById('fbName').value,
+                email: document.getElementById('fbEmail').value,
+                rating: rating,
+                message: msg.value,
+                website: document.getElementById('fbWebsite').value
+            };
+
+            try {
+                const response = await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                let resData;
+                try { resData = await response.json(); }
+                catch (_) { resData = { success: false, message: "Unexpected server response. Please try again." }; }
+
+                if (resData.success) {
+                    document.getElementById('feedbackForm').classList.add('hidden');
+                    document.getElementById('fbSuccess').classList.remove('hidden');
+                    document.getElementById('fbStatus').classList.add('hidden');
+                } else {
+                    showStatus(resData.message || "Something went wrong. Please try again.", true);
+                    btn.disabled = false;
+                    btn.innerHTML = `Submit Feedback <i class="fa-solid fa-paper-plane text-xs"></i>`;
+                }
+            } catch (err) {
+                showStatus("Network error. Please check your connection and try again.", true);
+                btn.disabled = false;
+                btn.innerHTML = `Submit Feedback <i class="fa-solid fa-paper-plane text-xs"></i>`;
+            }
+        }
+    </script>
+{% endblock %}

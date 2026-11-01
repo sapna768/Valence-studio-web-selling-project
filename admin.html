@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valence Studio | Elite Engineering & AI Solutions</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="text-slate-900 font-sans relative selection:bg-[#2563EB] selection:text-white overflow-x-hidden">
+
+    <!-- Dark Top Navigation Bar with Proper Scaled Butterfly Logo -->
+    <header class="sticky top-0 z-50 bg-[#0A0F1D] border-b border-slate-800 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group">
+                <div
+                    class="w-10 h-10 flex items-center justify-center bg-[#0F172A] border border-slate-800 rounded-xl p-1.5">
+                    <svg viewBox="0 0 200 200" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="vGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#2563EB" />
+                                <stop offset="100%" stop-color="#60A5FA" />
+                            </linearGradient>
+                            <linearGradient id="wingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3B82F6" />
+                                <stop offset="100%" stop-color="#C084FC" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 50 45 L 95 145 L 125 45" stroke="url(#vGrad)" stroke-width="22"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M 105 85 C 120 40, 165 30, 175 60 C 185 85, 145 105, 110 95 C 140 115, 160 145, 135 150 C 115 155, 102 120, 105 85 Z"
+                            fill="url(#wingGrad)" opacity="0.9" />
+                    </svg>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="font-['Cinzel'] font-bold text-xl tracking-[0.2em] text-white">VALENCE</span>
+                    <span class="font-['Cinzel'] font-light text-xl tracking-[0.25em] text-[#60A5FA]">STUDIO</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#services" class="hover:text-white transition">Services</a>
+                <a href="#pricing" class="hover:text-white transition">Pricing Plans</a>
+                <a href="#contact" class="hover:text-white transition">Give Contract</a>
+            </nav>
+
+            <a href="#contact"
+                class="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-full shadow-lg shadow-blue-500/30 transition flex items-center gap-2 text-sm">
+                Start Project <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- VALENCE STUDIO HERO SECTION (Creamy Math Grid & Faint Brand) -->
+    <section class="valence-hero" id="home">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <a href="#home" class="brand inline-block relative mb-6">
+                <div class="flex items-center justify-center gap-3 md:gap-4">
+                    <span
+                        class="font-['Cinzel'] font-extrabold text-3xl md:text-5xl tracking-[0.18em] text-[#0F172A]">VALENCE</span>
+                    <span
+                        class="font-['Cinzel'] font-light text-2xl md:text-4xl tracking-[0.25em] text-[#2563EB]">STUDIO</span>
+                </div>
+            </a>
+            <div class="brand-divider mb-6"></div>
+            <div class="availability">
+                <span class="status-dot"></span>
+                Available for New Projects
+            </div>
+            <h1>
+                We Build Digital Experiences
+                <br class="desktop-break" />
+                That <span class="gradient-text">Move You Forward.</span>
+            </h1>
+            <p class="hero-description">
+                Creative websites and digital solutions designed to
+                help your business stand out, connect and grow.
+            </p>
+            <div class="hero-actions flex justify-center">
+                <a href="#contact" class="primary-btn">
+                    Start Your Project
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+            <div class="hero-caption">
+                <span>DESIGN</span>
+                <span class="caption-dot">✦</span>
+                <span>DEVELOPMENT</span>
+                <span class="caption-dot">✦</span>
+                <span>DIGITAL GROWTH</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Capabilities & Deliverables Section -->
+    <section id="services" class="py-16 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-[#111827] mb-3">Core Capabilities & Deliverables</h2>
+            <p class="text-[#64748B] text-base">Everything your business needs to scale, automated and designed for
+                elite performance.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-[#0A0F1D] border border-slate-800 p-6 rounded-2xl shadow-xl transition hover:scale-[1.02]">
+                <div
+                    class="w-10 h-10 rounded-lg bg-[#2563EB]/20 text-[#2563EB] flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <h3 class="text-lg font-bold text-[#FFFFFF] mb-2">Websites & Apps</h3>
+                <p class="text-[#CBD5E1] text-xs leading-relaxed">Lightning-fast full-stack web apps and SaaS
+                    architectures.</p>
+            </div>
+
+            <div class="bg-[#0A0F1D] border border-slate-800 p-6 rounded-2xl shadow-xl transition hover:scale-[1.02]">
+                <div
+                    class="w-10 h-10 rounded-lg bg-[#2563EB]/20 text-[#2563EB] flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="text-lg font-bold text-[#FFFFFF] mb-2">Marketing Funnels</h3>
+                <p class="text-[#CBD5E1] text-xs leading-relaxed">Conversion optimization and sales funnels to acquire
+                    clients.</p>
+            </div>
+
+            <div class="bg-[#0A0F1D] border border-slate-800 p-6 rounded-2xl shadow-xl transition hover:scale-[1.02]">
+                <div
+                    class="w-10 h-10 rounded-lg bg-[#2563EB]/20 text-[#2563EB] flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="text-lg font-bold text-[#FFFFFF] mb-2">AI Solutions & Agents</h3>
+                <p class="text-[#CBD5E1] text-xs leading-relaxed">Custom LLM integrations and automated workflows.</p>
+            </div>
+
+            <div class="bg-[#0A0F1D] border border-slate-800 p-6 rounded-2xl shadow-xl transition hover:scale-[1.02]">
+                <div
+                    class="w-10 h-10 rounded-lg bg-[#2563EB]/20 text-[#2563EB] flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <h3 class="text-lg font-bold text-[#FFFFFF] mb-2">Digital Marketing</h3>
+                <p class="text-[#CBD5E1] text-xs leading-relaxed">Social media growth, Meta & Google ads, and local GMB
+                    ranking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING TIERS SECTION -->
+    <section id="pricing" class="py-20 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <div
+                class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-[#2563EB] px-4 py-1.5 rounded-full text-xs font-semibold mb-3">
+                Flexible Contracts & Packages
+            </div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-[#111827] mb-3">Choose Your Engagement Plan</h2>
+            <p class="text-[#64748B] text-sm">Transparent pricing engineered for Indian small businesses & startups.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            <div
+                class="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col justify-between relative shadow-sm hover:border-[#2563EB] transition">
+                <div>
+                    <h3 class="text-2xl font-bold text-[#111827] mb-2">Micro Starter</h3>
+                    <p class="text-[#64748B] text-sm mb-6">Best for new local businesses, small shops & individual
+                        professionals.</p>
+                    <div class="text-4xl font-extrabold text-[#111827] mb-6">₹7,999 <span
+                            class="text-xs text-[#64748B] font-normal">one-time</span></div>
+                    <ul class="space-y-3 text-sm text-[#64748B] mb-8">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> 1 to 3
+                            Mobile-Friendly Pages</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> WhatsApp
+                            Direct Chat Button</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> Direct Call
+                            Button</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> Google Maps
+                            Location Embed</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> Fast
+                            Delivery in 3-4 Days</li>
+                    </ul>
+                </div>
+                <button onclick="selectPackage('Micro Starter (₹7,999)')"
+                    class="block text-center w-full py-3.5 rounded-xl border border-slate-300 hover:border-[#2563EB] hover:bg-[#2563EB] hover:text-white text-[#111827] font-bold text-sm transition">Select
+                    Package</button>
+            </div>
+
+            <div
+                class="bg-[#0A0F1D] border-2 border-[#2563EB] rounded-3xl p-8 flex flex-col justify-between relative shadow-2xl scale-[1.03]">
+                <div
+                    class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#2563EB] text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                    Most Popular</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2 mt-2">Business Growth</h3>
+                    <p class="text-[#CBD5E1] text-sm mb-6">Ideal for Salons, Spas, Clinics, Tuition Classes & Gyms.</p>
+                    <div class="text-4xl font-extrabold text-white mb-6">₹14,999 <span
+                            class="text-xs text-[#CBD5E1] font-normal">one-time</span></div>
+                    <ul class="space-y-3 text-sm text-[#CBD5E1] mb-8">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> Up to 6-7
+                            Professional Pages</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> Google My
+                            Business Profile Setup</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> Contact
+                            Inquiry Lead Form</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> Local SEO
+                            Optimization</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> 1 Month
+                            Free Maintenance</li>
+                    </ul>
+                </div>
+                <button onclick="selectPackage('Business Growth (₹14,999)')"
+                    class="block text-center w-full py-3.5 rounded-xl bg-[#2563EB] hover:bg-blue-600 text-white font-bold text-sm transition shadow-lg">Select
+                    Package</button>
+            </div>
+
+            <div
+                class="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col justify-between relative shadow-sm hover:border-[#2563EB] transition">
+                <div>
+                    <h3 class="text-2xl font-bold text-[#111827] mb-2">Store / Booking</h3>
+                    <p class="text-[#64748B] text-sm mb-6">For Boutiques, Restaurants, Cloud Kitchens & Appointment
+                        Bookings.</p>
+                    <div class="text-4xl font-extrabold text-[#111827] mb-6">₹24,999 <span
+                            class="text-xs text-[#64748B] font-normal">one-time</span></div>
+                    <ul class="space-y-3 text-sm text-[#64748B] mb-8">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> E-commerce
+                            Store / Booking System</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> UPI, QR &
+                            Razorpay Integration</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> Direct
+                            WhatsApp Order Alerts</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> Digital
+                            Menu / Catalog Setup</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#2563EB]"></i> 3 Months
+                            Support</li>
+                    </ul>
+                </div>
+                <button onclick="selectPackage('Store / Booking (₹24,999)')"
+                    class="block text-center w-full py-3.5 rounded-xl border border-slate-300 hover:border-[#2563EB] hover:bg-[#2563EB] hover:text-white text-[#111827] font-bold text-sm transition">Select
+                    Package</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contract Form Section -->
+    <section id="contact" class="py-20 px-6 max-w-4xl mx-auto relative z-10">
+        <div class="bg-[#1E293B] border border-slate-700/80 p-8 md:p-12 rounded-3xl shadow-2xl text-white">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h2 class="text-4xl font-extrabold text-white mb-3 tracking-tight">Award Us Your Contract</h2>
+                <p class="text-slate-300 text-sm">Fill out your project details below, or reach out directly through our
+                    lines.</p>
+            </div>
+
+            <form id="contactForm" class="space-y-6" onsubmit="submitForm(event)">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">YOUR
+                            NAME / COMPANY</label>
+                        <input type="text" id="name" required placeholder="Your Name"
+                            class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-[#2563EB] outline-none transition font-medium">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">EMAIL
+                            ADDRESS</label>
+                        <input type="email" id="email" required placeholder="valencestudio7@gmail.com"
+                            class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-[#2563EB] outline-none transition font-medium">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">SELECT YOUR
+                        PACKAGE</label>
+                    <select id="service"
+                        class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-[#2563EB] outline-none transition font-medium">
+                        <option value="Micro Starter (₹7,999)">Micro Starter (₹7,999)</option>
+                        <option value="Business Growth (₹14,999)">Business Growth (₹14,999)</option>
+                        <option value="Store / Booking (₹24,999)">Store / Booking (₹24,999)</option>
+                        <option value="Custom Requirement">Other Custom Requirement</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-2">PROJECT
+                        REQUIREMENTS & TIMELINE</label>
+                    <textarea id="details" rows="4" placeholder="Tell us about your business goals and expectations..."
+                        class="w-full p-4 rounded-xl text-slate-900 bg-white border border-slate-300 focus:border-[#2563EB] outline-none transition font-medium"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn"
+                    class="w-full bg-[#2563EB] hover:bg-blue-600 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-blue-500/30 transition text-base flex items-center justify-center gap-2">
+                    Submit Contract Proposal <i class="fa-solid fa-paper-plane text-sm ml-1"></i>
+                </button>
+                <p id="formStatus" class="text-center text-sm font-semibold mt-4 hidden"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- JS Script Link -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

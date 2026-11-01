@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block meta %}{% endblock %}
+  <title>{% block title %}Valence Studio{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  {% block head_extra %}{% endblock %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<header class="site-header"><nav class="nav container">
+  <a class="brand" href="/"><span class="brand-mark">V</span> VALENCE <b>STUDIO</b></a>
+  <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <div class="nav-links">
+    <a href="/">Home</a><a href="/services">Services</a><a href="/work">Our Work</a><a href="/pricing">Pricing</a><a href="/about">About Us</a>
+    <div class="nav-mobile-extra">
+      {% if session.get('user_name') %}
+      <div class="nav-user"><span class="nav-user-name">Hi, {{ session.get('user_name') }}</span><a class="nav-logout" href="/logout">Logout</a></div>
+      {% else %}
+      <a class="nav-auth-link" href="/login">Login</a>
+      <a class="button button-ghost button-small" href="/register">Create Account</a>
+      {% endif %}
+      <a class="button button-small" href="/pricing#contact">Start a Project ↗</a>
+    </div>
+  </div>
+  <div class="nav-actions">
+    {% if session.get('user_name') %}
+    <div class="nav-user"><span class="nav-user-name">Hi, {{ session.get('user_name') }}</span><a class="nav-logout" href="/logout">Logout</a></div>
+    {% else %}
+    <a class="nav-auth-link" href="/login">Login</a>
+    <a class="button button-ghost button-small" href="/register">Create Account</a>
+    {% endif %}
+    <a class="button button-small nav-cta" href="/pricing#contact">Start a Project ↗</a>
+  </div>
+</nav></header>
+{% block content %}{% endblock %}
+<footer class="footer"><div class="container footer-inner"><a class="brand" href="/"><span class="brand-mark">V</span> VALENCE <b>STUDIO</b></a><p>Thoughtful digital experiences, built for what comes next.</p><small>© <span data-year></span> Valence Studio. All rights reserved.</small><a class="footer-feedback" href="/feedback">★ Share Feedback</a></div></footer>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
